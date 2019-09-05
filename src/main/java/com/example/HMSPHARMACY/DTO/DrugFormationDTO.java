@@ -1,6 +1,6 @@
 package com.example.HMSPHARMACY.DTO;
 
-import com.example.HMSPHARMACY.MODEL.Product;
+import com.example.HMSPHARMACY.MODEL.ProductRegistration;
 
 import java.util.List;
 
@@ -8,15 +8,15 @@ public class DrugFormationDTO {
 
     Long id;
     String name;
-    List<Product> productList;
+    List<ProductRegistration> productRegistrationList;
 
     public DrugFormationDTO() {
     }
 
-    public DrugFormationDTO(Long id, String name, List<Product> productList) {
+    public DrugFormationDTO(Long id, String name, List<ProductRegistration> productRegistrationList) {
         this.id = id;
         this.name = name;
-        this.productList = productList;
+        this.productRegistrationList = productRegistrationList;
     }
 
     public Long getId() {
@@ -35,11 +35,11 @@ public class DrugFormationDTO {
         this.name = name;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public List<ProductRegistration> getProductRegistrationList() {
+        return productRegistrationList;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProductRegistrationList(List<ProductRegistration> productRegistrationList) {
+        this.productRegistrationList = productRegistrationList;
     }
 }

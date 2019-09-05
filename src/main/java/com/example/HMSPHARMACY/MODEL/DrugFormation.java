@@ -13,18 +13,27 @@ public class DrugFormation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
+    String status;
 
     @OneToMany(mappedBy = "drugFormation")
     @JsonBackReference
-    List<Product> productList;
+    List<ProductRegistration> productRegistrationList;
 
     public DrugFormation() {
     }
 
-    public DrugFormation( String name, List<Product> productList) {
-        this.id = id;
+    public DrugFormation(String name, String status, List<ProductRegistration> productRegistrationList) {
         this.name = name;
-        this.productList = productList;
+        this.status = status;
+        this.productRegistrationList = productRegistrationList;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Long getId() {
@@ -43,11 +52,11 @@ public class DrugFormation {
         this.name = name;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public List<ProductRegistration> getProductRegistrationList() {
+        return productRegistrationList;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProductRegistrationList(List<ProductRegistration> productRegistrationList) {
+        this.productRegistrationList = productRegistrationList;
     }
 }
