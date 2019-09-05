@@ -9,6 +9,7 @@ public class Grn {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    String status;
     Long invoice;
     String receivedBy;
     String productName;
@@ -22,13 +23,14 @@ public class Grn {
     Double boxRate;
 
     @ManyToOne
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id",nullable = false)
     Company company;
+
 
     public Grn() {
     }
 
-    public Grn( Long invoice, String receivedBy, String productName, Long packing, Long requiredQuantity, Long bonusQuantity, Double boxTip, Double discount, Double discountedAmount, Double productTotalAmount, Double boxRate, Company company) {
+    public Grn( String status,Long invoice, String receivedBy, String productName, Long packing, Long requiredQuantity, Long bonusQuantity, Double boxTip, Double discount, Double discountedAmount, Double productTotalAmount, Double boxRate, Company company) {
         this.id = id;
         this.invoice = invoice;
         this.receivedBy = receivedBy;
@@ -42,6 +44,15 @@ public class Grn {
         this.productTotalAmount = productTotalAmount;
         this.boxRate = boxRate;
         this.company = company;
+        this.status=status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Long getId() {

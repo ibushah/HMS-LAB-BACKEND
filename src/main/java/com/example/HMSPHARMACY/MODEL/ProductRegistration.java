@@ -17,18 +17,25 @@ public class ProductRegistration {
     Boolean runningProduct;
 
     @ManyToOne
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id",nullable = false)
     Company company;
 
-    @OneToOne
-    @JoinColumn(name = "product_id")
-    Product product;
+    @OneToOne(mappedBy = "productRegistration")
+    Stock stock;
+
+    @ManyToOne()
+    @JoinColumn(name = "drugFormation_id")
+    DrugFormation drugFormation;
+
+
+
+
+
 
     public ProductRegistration() {
     }
 
-    public ProductRegistration( String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, Company company, Product product) {
-        this.id = id;
+    public ProductRegistration(String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, Company company, Stock stock, DrugFormation drugFormation) {
         this.formula = formula;
         this.packing = packing;
         this.boxRate = boxRate;
@@ -37,7 +44,24 @@ public class ProductRegistration {
         this.activeProduct = activeProduct;
         this.runningProduct = runningProduct;
         this.company = company;
-        this.product = product;
+        this.stock = stock;
+        this.drugFormation = drugFormation;
+    }
+
+    public DrugFormation getDrugFormation() {
+        return drugFormation;
+    }
+
+    public void setDrugFormation(DrugFormation drugFormation) {
+        this.drugFormation = drugFormation;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 
     public Long getId() {
@@ -112,11 +136,5 @@ public class ProductRegistration {
         this.company = company;
     }
 
-    public Product getProduct() {
-        return product;
-    }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 }

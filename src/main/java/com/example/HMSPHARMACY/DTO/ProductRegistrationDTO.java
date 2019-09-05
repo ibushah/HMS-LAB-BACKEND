@@ -1,7 +1,8 @@
 package com.example.HMSPHARMACY.DTO;
 
 import com.example.HMSPHARMACY.MODEL.Company;
-import com.example.HMSPHARMACY.MODEL.Product;
+import com.example.HMSPHARMACY.MODEL.DrugFormation;
+import com.example.HMSPHARMACY.MODEL.Stock;
 
 public class ProductRegistrationDTO {
         Long id;
@@ -14,12 +15,15 @@ public class ProductRegistrationDTO {
         Boolean runningProduct;
 
         Company company;
-        Product product;
+
+        Stock stock;
+
+        DrugFormation drugFormation;
 
     public ProductRegistrationDTO() {
     }
 
-    public ProductRegistrationDTO(Long id, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, Company company, Product product) {
+    public ProductRegistrationDTO(Long id, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, Company company, Stock stock, DrugFormation drugFormation) {
         this.id = id;
         this.formula = formula;
         this.packing = packing;
@@ -29,7 +33,8 @@ public class ProductRegistrationDTO {
         this.activeProduct = activeProduct;
         this.runningProduct = runningProduct;
         this.company = company;
-        this.product = product;
+        this.stock = stock;
+        this.drugFormation = drugFormation;
     }
 
     public Long getId() {
@@ -104,11 +109,19 @@ public class ProductRegistrationDTO {
         this.company = company;
     }
 
-    public Product getProduct() {
-        return product;
+    public Stock getStock() {
+        return stock;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setStock(Stock stock) {
+        this.stock = stock;
+    }
+
+    public DrugFormation getDrugFormation() {
+        return drugFormation;
+    }
+
+    public void setDrugFormation(DrugFormation drugFormation) {
+        this.drugFormation = drugFormation;
     }
 }

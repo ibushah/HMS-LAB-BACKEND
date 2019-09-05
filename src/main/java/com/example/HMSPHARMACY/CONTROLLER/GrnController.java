@@ -1,10 +1,35 @@
 package com.example.HMSPHARMACY.CONTROLLER;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.HMSPHARMACY.DTO.GrnDTO;
+import com.example.HMSPHARMACY.MODEL.Grn;
+import com.example.HMSPHARMACY.SERVICE.GrnService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/api/grn")
 public class GrnController {
+    @Autowired
+    GrnService grnService;
+
+    @PostMapping("/post")
+    public ResponseEntity<String> postGrn(@RequestBody GrnDTO grnDTO){
+        return null;
+
+    }
+    @GetMapping("/getAll")
+    public List<Grn> getAllGrn(){
+        return null;
+
+    }
+    @DeleteMapping("/delete/ {id}")
+    public ResponseEntity<String> deleteGrn(@PathVariable ("id") Long id){
+        return null;
+
+    }
 }

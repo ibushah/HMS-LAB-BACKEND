@@ -12,6 +12,7 @@ public class Company {
     Long id;
     String name;
     Long discount;
+    String status;
 
     @OneToMany(mappedBy = "company")
     List<ProductRegistration> productRegistrationList;
@@ -23,12 +24,21 @@ public class Company {
     public Company() {
     }
 
-    public Company( String name, Long discount, List<ProductRegistration> productRegistrationList, List<Grn> grnList) {
+    public Company( String status,String name, Long discount, List<ProductRegistration> productRegistrationList, List<Grn> grnList) {
         this.id = id;
         this.name = name;
         this.discount = discount;
         this.productRegistrationList = productRegistrationList;
         this.grnList = grnList;
+        this.status=status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Long getId() {

@@ -11,21 +11,28 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/company")
 public class CompanyController {
 
     @Autowired
     CompanyService companyService;
 
-    @PostMapping("/")
+    @PostMapping("/post")
     public ResponseEntity<String> postCompany(@RequestBody CompanyDTO companyDTO)
     {return companyService.postCompany(companyDTO);}
 
-    @GetMapping("/")
-    public List<Company> getCompanies()
+    @GetMapping("/getAll")
+    public List<Company> getAllCompanies()
     {
         return companyService.getCompanies();
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteCompany(@PathVariable ("id") Long id) {
+        return companyService.deleteCompany(id);
+    }
+
+
 
 
 }
