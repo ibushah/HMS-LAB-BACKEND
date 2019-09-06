@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductRegistrationService {
 
@@ -25,11 +27,28 @@ public class ProductRegistrationService {
         productRegistration.setMaxStock(productRegistrationDTO.getMaxStock());
         productRegistration.setMinStock(productRegistrationDTO.getMinStock());
         productRegistration.setPacking(productRegistrationDTO.getPacking());
+        productRegistration.setStatus("Active");
         productRegistration.setRunningProduct(productRegistrationDTO.getRunningProduct());
         productRegistrationRepository.save(productRegistration);
+
         return new ResponseEntity<String>("\"Product Registered successfully saved\"", HttpStatus.OK);
 
 
 
+    }
+
+    public List<ProductRegistration> getAllProductRegistration(){
+        List<ProductRegistration> productRegistration=productRegistrationRepository.findByStatus("Active");
+        return productRegistration;
+
+
+
+    }
+
+    public ResponseEntity<String> deleteProductRegistration(Long id){
+        ProductRegistration productRegistration=productRegistrationRepository.getOne(id);
+        productRegistration.setStatus("InActive");
+        productRegistrationRepository.save(productRegistration);
+        return new ResponseEntity<String>("\"Product Registered deleted successfully saved\"", HttpStatus.OK);
     }
 }

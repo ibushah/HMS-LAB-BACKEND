@@ -2,13 +2,13 @@ package com.example.HMSPHARMACY.CONTROLLER;
 
 
 import com.example.HMSPHARMACY.DTO.ProductRegistrationDTO;
+import com.example.HMSPHARMACY.MODEL.ProductRegistration;
 import com.example.HMSPHARMACY.SERVICE.ProductRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -23,4 +23,16 @@ public class ProductRegistrationController {
 
         return productRegistrationService.postProductRegistration(productRegistrationDTO);
     }
+
+    @GetMapping("/getAll")
+    public List<ProductRegistration> getAllProductRegistration(){
+        return productRegistrationService.getAllProductRegistration();
+
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteProductRegistration(@PathVariable ("id") Long id){
+
+        return productRegistrationService.deleteProductRegistration(id);
+        }
  }
