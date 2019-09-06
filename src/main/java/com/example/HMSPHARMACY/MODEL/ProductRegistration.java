@@ -15,6 +15,7 @@ public class ProductRegistration {
     Long maxStock;
     Boolean activeProduct;
     Boolean runningProduct;
+    String status;
 
     @ManyToOne
     @JoinColumn(name = "company_id",nullable = false)
@@ -35,7 +36,7 @@ public class ProductRegistration {
     public ProductRegistration() {
     }
 
-    public ProductRegistration(String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, Company company, Stock stock, DrugFormation drugFormation) {
+    public ProductRegistration(String status,String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, Company company, Stock stock, DrugFormation drugFormation) {
         this.formula = formula;
         this.packing = packing;
         this.boxRate = boxRate;
@@ -46,6 +47,15 @@ public class ProductRegistration {
         this.company = company;
         this.stock = stock;
         this.drugFormation = drugFormation;
+        this.status=status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public DrugFormation getDrugFormation() {

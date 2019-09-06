@@ -12,6 +12,7 @@ public class Stock {
 
 
 
+
     @OneToOne
     @JoinColumn(name = "productReg_id")
     @JsonBackReference
