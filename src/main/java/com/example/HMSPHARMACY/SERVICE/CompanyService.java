@@ -38,10 +38,16 @@ public class CompanyService {
     }
     public ResponseEntity<String> deleteCompany(Long id ){
 
-        Company company=companyRepository.getOne(id);
-        company.setStatus("InActive");
-        companyRepository.save(company);
-        return new ResponseEntity<String>("\"Company deleted saved\"", HttpStatus.OK);
+        Company company=companyRepository.findById(id).get();
+        if(company!=null) {
+            company.setStatus("InActive");
+            companyRepository.save(company);
 
+            return new ResponseEntity<String>("\"Company deleted saved\"", HttpStatus.OK);
+        }
+        else{
+
+            return new ResponseEntity<String>("\"Company not found \"", HttpStatus.NOT_FOUND);
+        }
     }
 }
