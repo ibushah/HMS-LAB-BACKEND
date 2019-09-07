@@ -16,8 +16,8 @@ public class ProductRegistrationService {
     @Autowired
     ProductRegistrationRepository productRegistrationRepository;
 
-    public ResponseEntity<String> postProductRegistration(ProductRegistrationDTO productRegistrationDTO){
-        ProductRegistration productRegistration=new ProductRegistration();
+    public ResponseEntity<String> postProductRegistration(ProductRegistrationDTO productRegistrationDTO) {
+        ProductRegistration productRegistration = new ProductRegistration();
         productRegistration.setCompany(productRegistrationDTO.getCompany());
         productRegistration.setDrugFormation(productRegistrationDTO.getDrugFormation());
         productRegistration.setStock(productRegistrationDTO.getStock());
@@ -34,21 +34,28 @@ public class ProductRegistrationService {
         return new ResponseEntity<String>("\"Product Registered successfully saved\"", HttpStatus.OK);
 
 
-
     }
 
-    public List<ProductRegistration> getAllProductRegistration(){
-        List<ProductRegistration> productRegistration=productRegistrationRepository.findByStatus("Active");
+    public List<ProductRegistration> getAllProductRegistration() {
+        List<ProductRegistration> productRegistration = productRegistrationRepository.findByStatus("Active");
         return productRegistration;
 
 
-
     }
 
-    public ResponseEntity<String> deleteProductRegistration(Long id){
-        ProductRegistration productRegistration=productRegistrationRepository.getOne(id);
-        productRegistration.setStatus("InActive");
-        productRegistrationRepository.save(productRegistration);
-        return new ResponseEntity<String>("\"Product Registered deleted successfully saved\"", HttpStatus.OK);
+
+    public ResponseEntity<String> deleteProductRegistration(Long id) {
+
+        ProductRegistration productRegistration = productRegistrationRepository.findById(id).get();
+        if (productRegistration != null) {
+            productRegistration.setStatus("InActive");
+            productRegistrationRepository.save(productRegistration);
+            return new ResponseEntity<String>("\"Product Registered deleted successfully saved\"", HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<String>("\"Company deleted saved\"", HttpStatus.OK);
+        }
     }
+
+
 }

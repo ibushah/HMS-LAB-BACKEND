@@ -31,11 +31,13 @@ public class DrugFormationService {
     }
     public ResponseEntity<String> deleteDrugFormation(Long id){
 
-        DrugFormation drugFormation=drugFormationRepository.getOne(id);
-        drugFormation.setStatus("InActive");
-        drugFormationRepository.save(drugFormation);
-    return new ResponseEntity<String>("\"Drug formation  deleted successfully\"", HttpStatus.OK);
-
+        DrugFormation drugFormation=drugFormationRepository.findById(id).get();
+        if(drugFormation!=null) {
+            drugFormation.setStatus("InActive");
+            drugFormationRepository.save(drugFormation);
+            return new ResponseEntity<String>("\"Drug formation  deleted successfully\"", HttpStatus.OK);
+        }
+        else {  return new ResponseEntity<String>("\"Drug Formation not found\"", HttpStatus.NOT_FOUND);}
 }
 
 }

@@ -43,10 +43,12 @@ public class GrnService {
     }
     public ResponseEntity<String> deleteDrugFormation(Long id){
 
-        Grn grn=grnRepository.getOne(id);
-        grn.setStatus("InActive");
-        grnRepository.save(grn);
-        return new ResponseEntity<String>("\"Drug formation  deleted successfully\"", HttpStatus.OK);
-
+        Grn grn=grnRepository.findById(id).get();
+        if(grn!=null) {
+            grn.setStatus("InActive");
+            grnRepository.save(grn);
+            return new ResponseEntity<String>("\"Drug formation  deleted successfully\"", HttpStatus.OK);
+        }
+        else {  return new ResponseEntity<String>("\"Grn  Not found\"", HttpStatus.NOT_FOUND);}
     }
 }
