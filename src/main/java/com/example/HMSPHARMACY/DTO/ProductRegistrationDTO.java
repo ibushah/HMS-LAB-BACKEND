@@ -14,7 +14,7 @@ public class ProductRegistrationDTO {
         Boolean activeProduct;
         Boolean runningProduct;
 
-        Company company;
+        Company companyProd;
 
         Stock stock;
 
@@ -32,7 +32,7 @@ public class ProductRegistrationDTO {
         this.maxStock = maxStock;
         this.activeProduct = activeProduct;
         this.runningProduct = runningProduct;
-        this.company = company;
+        this.companyProd = company;
         this.stock = stock;
         this.drugFormation = drugFormation;
     }
@@ -101,12 +101,12 @@ public class ProductRegistrationDTO {
         this.runningProduct = runningProduct;
     }
 
-    public Company getCompany() {
-        return company;
+    public Company getCompanyProd() {
+        return companyProd;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanyProd(Company companyProd) {
+        this.companyProd = companyProd;
     }
 
     public Stock getStock() {

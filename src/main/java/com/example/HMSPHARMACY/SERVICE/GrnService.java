@@ -36,12 +36,12 @@ public class GrnService {
         return new ResponseEntity<String>("\"Drug formation  successfully saved\"", HttpStatus.OK);
     }
 
-    public List<Grn> getDrugFormation(){
+    public List<Grn> getAllGrn(){
         List<Grn> grnList=grnRepository.findByStatus("Active");
         return grnList;
 
     }
-    public ResponseEntity<String> deleteDrugFormation(Long id){
+    public ResponseEntity<String> deleteGrn(Long id){
 
         Grn grn=grnRepository.findById(id).get();
         if(grn!=null) {

@@ -19,17 +19,17 @@ public class GrnController {
 
     @PostMapping("/post")
     public ResponseEntity<String> postGrn(@RequestBody GrnDTO grnDTO){
-        return null;
+        return grnService.postGrn(grnDTO);
 
     }
     @GetMapping("/getAll")
     public List<Grn> getAllGrn(){
-        return null;
+        return grnService.getAllGrn();
 
     }
     @DeleteMapping("/delete/ {id}")
     public ResponseEntity<String> deleteGrn(@PathVariable ("id") Long id){
-        return null;
+        return grnService.deleteGrn(id);
 
     }
 }
