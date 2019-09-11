@@ -8,6 +8,7 @@ public class ProductRegistration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    String productName;
     String formula;
     Long packing;
     Double boxRate;
@@ -36,7 +37,8 @@ public class ProductRegistration {
     public ProductRegistration() {
     }
 
-    public ProductRegistration(String status,String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, Company companyProd, Stock stock, DrugFormation drugFormation) {
+    public ProductRegistration(String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, String status, Company companyProd, DrugFormation drugFormation) {
+        this.productName = productName;
         this.formula = formula;
         this.packing = packing;
         this.boxRate = boxRate;
@@ -44,10 +46,9 @@ public class ProductRegistration {
         this.maxStock = maxStock;
         this.activeProduct = activeProduct;
         this.runningProduct = runningProduct;
+        this.status = status;
         this.companyProd = companyProd;
-//        this.stock = stock;
         this.drugFormation = drugFormation;
-        this.status=status;
     }
 
     public String getStatus() {
@@ -100,6 +101,14 @@ public class ProductRegistration {
 
     public Double getBoxRate() {
         return boxRate;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public void setBoxRate(Double boxRate) {

@@ -18,6 +18,7 @@ public class ProductRegistrationService {
 
     public ResponseEntity<String> postProductRegistration(ProductRegistrationDTO productRegistrationDTO) {
         ProductRegistration productRegistration = new ProductRegistration();
+        productRegistration.setProductName(productRegistrationDTO.getProductName());
         productRegistration.setCompanyProd(productRegistrationDTO.getCompanyProd());
         productRegistration.setDrugFormation(productRegistrationDTO.getDrugFormation());
 //        productRegistration.setStock(productRegistrationDTO.getStock());
