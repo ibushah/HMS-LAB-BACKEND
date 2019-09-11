@@ -19,10 +19,10 @@ public class ProductRegistration {
 
     @ManyToOne
     @JoinColumn(name = "company_id",nullable = false)
-    Company company;
+    Company companyProd;
 
-    @OneToOne(mappedBy = "productRegistration")
-    Stock stock;
+//    @OneToOne(mappedBy = "productRegistration")
+//    Stock stock;
 
     @ManyToOne()
     @JoinColumn(name = "drugFormation_id")
@@ -36,7 +36,7 @@ public class ProductRegistration {
     public ProductRegistration() {
     }
 
-    public ProductRegistration(String status,String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, Company company, Stock stock, DrugFormation drugFormation) {
+    public ProductRegistration(String status,String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, Company companyProd, Stock stock, DrugFormation drugFormation) {
         this.formula = formula;
         this.packing = packing;
         this.boxRate = boxRate;
@@ -44,8 +44,8 @@ public class ProductRegistration {
         this.maxStock = maxStock;
         this.activeProduct = activeProduct;
         this.runningProduct = runningProduct;
-        this.company = company;
-        this.stock = stock;
+        this.companyProd = companyProd;
+//        this.stock = stock;
         this.drugFormation = drugFormation;
         this.status=status;
     }
@@ -66,13 +66,13 @@ public class ProductRegistration {
         this.drugFormation = drugFormation;
     }
 
-    public Stock getStock() {
-        return stock;
-    }
-
-    public void setStock(Stock stock) {
-        this.stock = stock;
-    }
+//    public Stock getStock() {
+//        return stock;
+//    }
+//
+//    public void setStock(Stock stock) {
+//        this.stock = stock;
+//    }
 
     public Long getId() {
         return id;
@@ -138,12 +138,12 @@ public class ProductRegistration {
         this.runningProduct = runningProduct;
     }
 
-    public Company getCompany() {
-        return company;
+    public Company getCompanyProd() {
+        return companyProd;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanyProd(Company companyProd) {
+        this.companyProd = companyProd;
     }
 
 

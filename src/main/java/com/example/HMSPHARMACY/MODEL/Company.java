@@ -14,7 +14,7 @@ public class Company {
     Long discount;
     String status;
 
-    @OneToMany(mappedBy = "company")
+    @OneToMany(mappedBy = "companyProd")
     List<ProductRegistration> productRegistrationList;
 
     @OneToMany(mappedBy = "company")

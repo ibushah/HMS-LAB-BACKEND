@@ -19,7 +19,7 @@ public class ProductRegistrationController {
     ProductRegistrationService productRegistrationService;
 
     @PostMapping("/post")
-    public ResponseEntity<String> postProductRegistration(ProductRegistrationDTO productRegistrationDTO){
+    public ResponseEntity<String> postProductRegistration(@RequestBody ProductRegistrationDTO productRegistrationDTO){
 
         return productRegistrationService.postProductRegistration(productRegistrationDTO);
     }
