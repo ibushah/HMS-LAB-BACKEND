@@ -1,7 +1,10 @@
 package com.example.HMSPHARMACY.DTO;
 
+import com.example.HMSPHARMACY.MODEL.ProductRegistration;
+
 public class SalesDTO {
 
+    ProductRegistration productRegistration;
     String productName;
     Double productQuantity ;
     Double productPrice;
@@ -40,5 +43,13 @@ public class SalesDTO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public ProductRegistration getProductRegistration() {
+        return productRegistration;
+    }
+
+    public void setProductRegistration(ProductRegistration productRegistration) {
+        this.productRegistration = productRegistration;
     }
 }
