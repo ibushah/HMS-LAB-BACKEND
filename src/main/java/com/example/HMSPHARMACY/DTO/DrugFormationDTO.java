@@ -7,15 +7,15 @@ import java.util.List;
 public class DrugFormationDTO {
 
     Long id;
-    String name;
+    String type;
     List<ProductRegistration> productRegistrationList;
 
     public DrugFormationDTO() {
     }
 
-    public DrugFormationDTO(Long id, String name, List<ProductRegistration> productRegistrationList) {
+    public DrugFormationDTO(Long id, String type, List<ProductRegistration> productRegistrationList) {
         this.id = id;
-        this.name = name;
+        this.type = type;
         this.productRegistrationList = productRegistrationList;
     }
 
@@ -27,12 +27,12 @@ public class DrugFormationDTO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public List<ProductRegistration> getProductRegistrationList() {

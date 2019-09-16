@@ -1,6 +1,8 @@
 package com.example.HMSPHARMACY.MODEL;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +26,7 @@ public class Grn {
 
     @ManyToOne
     @JoinColumn(name = "company_id",nullable = false)
+    @JsonIgnore
     Company company;
 
 

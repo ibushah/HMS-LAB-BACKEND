@@ -19,7 +19,7 @@ public class DrugFormationService {
     public ResponseEntity<String> postDrugFormation(DrugFormationDTO drugFormationDTO){
         DrugFormation drugFormation=new DrugFormation();
         drugFormation.setStatus("Active");
-        drugFormation.setName(drugFormationDTO.getName());
+        drugFormation.setType(drugFormationDTO.getType());
         drugFormationRepository.save(drugFormation);
         return new ResponseEntity<String>("\"Drug formation  successfully saved\"", HttpStatus.OK);
     }
