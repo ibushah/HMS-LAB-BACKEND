@@ -1,9 +1,7 @@
 package com.example.HMSPHARMACY.MODEL;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Sales {
@@ -16,7 +14,20 @@ public class Sales {
     Double productPrice;
     String status;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    ProductRegistration productRegistrations;
+
+
     public Sales() {
+    }
+
+    public ProductRegistration getProductRegistrations() {
+        return productRegistrations;
+    }
+
+    public void setProductRegistrations(ProductRegistration productRegistrations) {
+        this.productRegistrations = productRegistrations;
     }
 
     public Long getId() {
