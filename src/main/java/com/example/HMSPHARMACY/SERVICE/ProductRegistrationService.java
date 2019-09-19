@@ -22,6 +22,7 @@ public class ProductRegistrationService {
         productRegistration.setCompanyProd(productRegistrationDTO.getCompanyProd());
         productRegistration.setDrugFormation(productRegistrationDTO.getDrugFormation());
 //        productRegistration.setStock(productRegistrationDTO.getStock());
+        productRegistration.setUnitPrice(productRegistrationDTO.getUnitPrice());
         productRegistration.setActiveProduct(productRegistrationDTO.getActiveProduct());
         productRegistration.setBoxRate(productRegistrationDTO.getBoxRate());
         productRegistration.setFormula(productRegistrationDTO.getFormula());
