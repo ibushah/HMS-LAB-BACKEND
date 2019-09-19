@@ -3,6 +3,7 @@ package com.example.HMSPHARMACY.MODEL;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class ProductRegistration {
@@ -31,11 +32,12 @@ public class ProductRegistration {
 
     @ManyToOne()
     @JoinColumn(name = "drugFormation_id")
+    @JsonIgnore
     DrugFormation drugFormation;
 
-
-
-
+    @OneToMany(mappedBy = "productRegistrations")
+    @JsonIgnore
+    List<Sales> sales;
 
 
     public ProductRegistration() {
@@ -62,6 +64,14 @@ public class ProductRegistration {
 
     public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    public List<Sales> getSales() {
+        return sales;
+    }
+
+    public void setSales(List<Sales> sales) {
+        this.sales = sales;
     }
 
     public String getStatus() {
