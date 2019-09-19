@@ -20,6 +20,7 @@ public class ProductRegistration {
     Boolean activeProduct;
     Boolean runningProduct;
     String status;
+    Double unitPrice;
 
     @ManyToOne
     @JoinColumn(name = "company_id",nullable = false)
@@ -42,7 +43,7 @@ public class ProductRegistration {
     public ProductRegistration() {
     }
 
-    public ProductRegistration(String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, String status, Company companyProd, DrugFormation drugFormation) {
+    public ProductRegistration(Double unitPrice ,String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, String status, Company companyProd, DrugFormation drugFormation) {
         this.productName = productName;
         this.formula = formula;
         this.packing = packing;
@@ -54,6 +55,15 @@ public class ProductRegistration {
         this.status = status;
         this.companyProd = companyProd;
         this.drugFormation = drugFormation;
+        this.unitPrice=unitPrice;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public List<Sales> getSales() {

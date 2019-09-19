@@ -27,7 +27,7 @@ public class DrugFormationController {
         return drugFormationService.getDrugFormation();
     }
 
-    @DeleteMapping("/delete/ {id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteDrugFormation(@PathVariable ("id") Long id){
         return drugFormationService.deleteDrugFormation(id);
     }
