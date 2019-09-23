@@ -19,6 +19,10 @@ public class Sales {
     ProductRegistration productRegistrations;
 
 
+    @ManyToOne
+    @JoinColumn(name = "bulksave_id", nullable = false)
+    private BulkSave bulksave;
+
     public Sales() {
     }
 
@@ -68,5 +72,13 @@ public class Sales {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public BulkSave getBulksave() {
+        return bulksave;
+    }
+
+    public void setBulksave(BulkSave bulksave) {
+        this.bulksave = bulksave;
     }
 }
