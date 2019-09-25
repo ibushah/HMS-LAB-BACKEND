@@ -1,6 +1,8 @@
 package com.example.HMSPHARMACY.MODEL;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,6 +17,7 @@ public class Company {
     String status;
 
     @OneToMany(mappedBy = "companyProd")
+            @JsonIgnore
     List<ProductRegistration> productRegistrationList;
 
     @OneToMany(mappedBy = "company")

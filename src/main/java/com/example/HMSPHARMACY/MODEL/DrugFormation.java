@@ -2,6 +2,7 @@ package com.example.HMSPHARMACY.MODEL;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,7 +17,7 @@ public class DrugFormation {
     String status;
 
     @OneToMany(mappedBy = "drugFormation")
-    @JsonBackReference
+            @JsonIgnore
     List<ProductRegistration> productRegistrationList;
 
     public DrugFormation() {
