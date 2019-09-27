@@ -1,5 +1,6 @@
 package com.example.HMSPHARMACY.MODEL;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -24,15 +25,14 @@ public class ProductRegistration {
 
     @ManyToOne
     @JoinColumn(name = "company_id",nullable = false)
-    @JsonIgnore
+
     Company companyProd;
 
 //    @OneToOne(mappedBy = "productRegistration")
 //    Stock stock;
 
     @ManyToOne()
-    @JoinColumn(name = "drugFormation_id")
-    @JsonIgnore
+    @JoinColumn(name = "drugFormation_id",nullable = false)
     DrugFormation drugFormation;
 
     @OneToMany(mappedBy = "productRegistrations")

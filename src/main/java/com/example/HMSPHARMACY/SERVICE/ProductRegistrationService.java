@@ -59,5 +59,41 @@ public class ProductRegistrationService {
         }
     }
 
+    public ResponseEntity<String> updateProductRegistration(Long id,ProductRegistrationDTO productRegistrationDTO){
+
+        ProductRegistration productRegistration=productRegistrationRepository.findById(id).get();
+        if(productRegistration!=null){
+
+            productRegistration.setProductName(productRegistrationDTO.getProductName());
+            productRegistration.setStatus("Active");
+            productRegistration.setRunningProduct(productRegistrationDTO.getRunningProduct());
+            productRegistration.setPacking(productRegistrationDTO.getPacking());
+            productRegistration.setMinStock(productRegistrationDTO.getMinStock());
+            productRegistration.setMaxStock(productRegistrationDTO.getMaxStock());
+            productRegistration.setFormula(productRegistrationDTO.getFormula());
+            productRegistration.setBoxRate(productRegistrationDTO.getBoxRate());
+            productRegistration.setActiveProduct(productRegistrationDTO.getActiveProduct());
+            productRegistration.setDrugFormation(productRegistrationDTO.getDrugFormation());
+            productRegistration.setCompanyProd(productRegistrationDTO.getCompanyProd());
+            productRegistration.setUnitPrice(productRegistrationDTO.getUnitPrice());
+            productRegistrationRepository.save(productRegistration);
+            return new ResponseEntity<String>("\"Product Registered Updated successfully\"", HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<String>("\"Product Registered deleted successfully saved\"", HttpStatus.NOT_FOUND);
+        }
+
+    }
+    public ProductRegistration getProductRegistration(Long id){
+       ProductRegistration productRegistration= productRegistrationRepository.findById(id).get();
+        if(productRegistration!=null){
+            return productRegistration;
+        }
+        else {
+
+            return null;
+        }
+    }
 
 }

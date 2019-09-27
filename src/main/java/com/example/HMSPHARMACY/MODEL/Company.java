@@ -17,6 +17,7 @@ public class Company {
     String status;
 
     @OneToMany(mappedBy = "companyProd")
+            @JsonIgnore
     List<ProductRegistration> productRegistrationList;
 
     @OneToMany(mappedBy = "company")
