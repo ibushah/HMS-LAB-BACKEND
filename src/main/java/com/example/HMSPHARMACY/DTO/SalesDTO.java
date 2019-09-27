@@ -6,7 +6,7 @@ public class SalesDTO {
 
     ProductRegistration productRegistration;
     String productName;
-    Double productQuantity ;
+    Long productQuantity ;
     Double productPrice;
     String status;
 
@@ -21,11 +21,11 @@ public class SalesDTO {
         this.productName = productName;
     }
 
-    public Double getProductQuantity() {
+    public Long getProductQuantity() {
         return productQuantity;
     }
 
-    public void setProductQuantity(Double productQuantity) {
+    public void setProductQuantity(Long productQuantity) {
         this.productQuantity = productQuantity;
     }
 

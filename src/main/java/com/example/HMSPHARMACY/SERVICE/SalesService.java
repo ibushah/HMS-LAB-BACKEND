@@ -2,8 +2,10 @@ package com.example.HMSPHARMACY.SERVICE;
 
 import com.example.HMSPHARMACY.DTO.SalesDTO;
 import com.example.HMSPHARMACY.MODEL.BulkSave;
+import com.example.HMSPHARMACY.MODEL.ProductRegistration;
 import com.example.HMSPHARMACY.MODEL.Sales;
 import com.example.HMSPHARMACY.REPOSITORY.BulkSaveRepository;
+import com.example.HMSPHARMACY.REPOSITORY.ProductRegistrationRepository;
 import com.example.HMSPHARMACY.REPOSITORY.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,10 +25,12 @@ public class SalesService {
     @Autowired
     BulkSaveRepository bulkSaveRepository;
 
+
     public ResponseEntity<String> saveSales(List<SalesDTO> salesDTOList){
 
         List<Sales> sales = new ArrayList<>();
         Double total=0D;
+        Long remainingStock = 0L;
         for(SalesDTO sale:salesDTOList)
             total = total + sale.getProductPrice();
 
@@ -46,7 +50,10 @@ public class SalesService {
             sales1.setProductName(salesDto.getProductRegistration().getProductName());
             sales1.setProductRegistrations(salesDto.getProductRegistration());
             sales.add(sales1);
+
         });
+
+
         salesRepository.saveAll(sales);
 
 
