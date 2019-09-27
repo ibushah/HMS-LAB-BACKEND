@@ -21,6 +21,7 @@ public class Company {
     List<ProductRegistration> productRegistrationList;
 
     @OneToMany(mappedBy = "company")
+    @JsonIgnore
     List<Grn> grnList;
 
 
