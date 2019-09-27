@@ -42,10 +42,9 @@ public class ProductRegistrationController {
 return productRegistrationService.updateProductRegistration(id,productRegistrationDTO);
         }
 
-        @GetMapping("/getone/{id}")
-    public ProductRegistration getproductregistrationbyid(@PathVariable ("id") Long id){
+        @GetMapping("/getOne/{id}")
+    public ProductRegistration getProductRegistrationById(@PathVariable ("id") Long id){
         return productRegistrationService.getProductRegistration(id);
-
 
         }
  }
