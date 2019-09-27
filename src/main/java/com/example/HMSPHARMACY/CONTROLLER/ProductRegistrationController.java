@@ -2,6 +2,7 @@ package com.example.HMSPHARMACY.CONTROLLER;
 
 
 import com.example.HMSPHARMACY.DTO.ProductRegistrationDTO;
+import com.example.HMSPHARMACY.DTO.ProductStockDTO;
 import com.example.HMSPHARMACY.MODEL.ProductRegistration;
 import com.example.HMSPHARMACY.SERVICE.ProductRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,12 @@ public class ProductRegistrationController {
         return productRegistrationService.deleteProductRegistration(id);
         }
 
+
+    @PutMapping("/update")
+    public ResponseEntity<String> updateProductStocks(@RequestBody ProductStockDTO productStockDTO){
+        return productRegistrationService.updateProductStocks(productStockDTO);
+    }
+
         @PutMapping("/update/{id}")
     public ResponseEntity<String> updateProductRegistration(@PathVariable("id") Long id ,@RequestBody ProductRegistrationDTO productRegistrationDTO )
         {
@@ -47,4 +54,5 @@ return productRegistrationService.updateProductRegistration(id,productRegistrati
         return productRegistrationService.getProductRegistration(id);
 
         }
+
  }

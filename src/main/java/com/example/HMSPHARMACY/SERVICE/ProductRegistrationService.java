@@ -1,6 +1,7 @@
 package com.example.HMSPHARMACY.SERVICE;
 
 import com.example.HMSPHARMACY.DTO.ProductRegistrationDTO;
+import com.example.HMSPHARMACY.DTO.ProductStockDTO;
 import com.example.HMSPHARMACY.MODEL.ProductRegistration;
 import com.example.HMSPHARMACY.REPOSITORY.ProductRegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductRegistrationService {
@@ -59,6 +61,27 @@ public class ProductRegistrationService {
         }
     }
 
+
+    public ResponseEntity<String> updateProductStocks(ProductStockDTO productStockDTO){
+
+        Optional<ProductRegistration> productRegistration = productRegistrationRepository.findById(productStockDTO.getId());
+        if(productRegistration != null){
+            ProductRegistration productRegistration1 = productRegistration.get();
+
+                productRegistration1.setMaxStock(productStockDTO.getMaxStock() - productStockDTO.getProductQuantity());
+            if(productRegistration1.getMaxStock() > productRegistration1.getMinStock()) {
+                productRegistrationRepository.save(productRegistration1);
+                return new ResponseEntity<String>("\"maxStock Updated successfully \"", HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<String>("\"PRODUCTOUTOFSTOCK\"", HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<String>("\"Not Found \"", HttpStatus.OK);
+
+    }
+
+
     public ResponseEntity<String> updateProductRegistration(Long id,ProductRegistrationDTO productRegistrationDTO){
 
         ProductRegistration productRegistration=productRegistrationRepository.findById(id).get();
@@ -95,5 +118,6 @@ public class ProductRegistrationService {
             return null;
         }
     }
+
 
 }
