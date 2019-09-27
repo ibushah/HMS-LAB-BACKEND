@@ -12,7 +12,7 @@ public class DrugFormation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String name;
+    String type;
     String status;
 
     @OneToMany(mappedBy = "drugFormation")
@@ -22,8 +22,8 @@ public class DrugFormation {
     public DrugFormation() {
     }
 
-    public DrugFormation(String name, String status, List<ProductRegistration> productRegistrationList) {
-        this.name = name;
+    public DrugFormation(String type, String status, List<ProductRegistration> productRegistrationList) {
+        this.type = type;
         this.status = status;
         this.productRegistrationList = productRegistrationList;
     }
@@ -44,12 +44,12 @@ public class DrugFormation {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public List<ProductRegistration> getProductRegistrationList() {

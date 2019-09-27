@@ -1,6 +1,9 @@
 package com.example.HMSPHARMACY.MODEL;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class ProductRegistration {
@@ -17,9 +20,11 @@ public class ProductRegistration {
     Boolean activeProduct;
     Boolean runningProduct;
     String status;
+    Double unitPrice;
 
     @ManyToOne
     @JoinColumn(name = "company_id",nullable = false)
+    @JsonIgnore
     Company companyProd;
 
 //    @OneToOne(mappedBy = "productRegistration")
@@ -27,17 +32,18 @@ public class ProductRegistration {
 
     @ManyToOne()
     @JoinColumn(name = "drugFormation_id")
+    @JsonIgnore
     DrugFormation drugFormation;
 
-
-
-
+    @OneToMany(mappedBy = "productRegistrations")
+    @JsonIgnore
+    List<Sales> sales;
 
 
     public ProductRegistration() {
     }
 
-    public ProductRegistration(String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, String status, Company companyProd, DrugFormation drugFormation) {
+    public ProductRegistration(Double unitPrice ,String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, String status, Company companyProd, DrugFormation drugFormation) {
         this.productName = productName;
         this.formula = formula;
         this.packing = packing;
@@ -49,6 +55,23 @@ public class ProductRegistration {
         this.status = status;
         this.companyProd = companyProd;
         this.drugFormation = drugFormation;
+        this.unitPrice=unitPrice;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public List<Sales> getSales() {
+        return sales;
+    }
+
+    public void setSales(List<Sales> sales) {
+        this.sales = sales;
     }
 
     public String getStatus() {
