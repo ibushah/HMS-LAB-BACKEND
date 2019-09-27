@@ -37,8 +37,22 @@ public class ProductRegistrationController {
         return productRegistrationService.deleteProductRegistration(id);
         }
 
+
     @PutMapping("/update")
     public ResponseEntity<String> updateProductStocks(@RequestBody ProductStockDTO productStockDTO){
         return productRegistrationService.updateProductStocks(productStockDTO);
     }
+
+        @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateProductRegistration(@PathVariable("id") Long id ,@RequestBody ProductRegistrationDTO productRegistrationDTO )
+        {
+return productRegistrationService.updateProductRegistration(id,productRegistrationDTO);
+        }
+
+        @GetMapping("/getOne/{id}")
+    public ProductRegistration getProductRegistrationById(@PathVariable ("id") Long id){
+        return productRegistrationService.getProductRegistration(id);
+
+        }
+
  }
