@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -62,25 +64,46 @@ public class ProductRegistrationService {
     }
 
 
-    public ResponseEntity<String> updateProductStocks(ProductStockDTO productStockDTO){
+    public ResponseEntity<Map<Long,String>> updateProductStocks(ProductStockDTO productStockDTO){
+
+        Map<Long,String> map=new HashMap<Long,String>();
 
         Optional<ProductRegistration> productRegistration = productRegistrationRepository.findById(productStockDTO.getId());
         if(productRegistration != null){
             ProductRegistration productRegistration1 = productRegistration.get();
 
-                productRegistration1.setMaxStock(productStockDTO.getMaxStock() - productStockDTO.getProductQuantity());
+                productRegistration1.setMaxStock(productRegistration1.getMaxStock() - productStockDTO.getProductQuantity());
             if(productRegistration1.getMaxStock() > productRegistration1.getMinStock()) {
                 productRegistrationRepository.save(productRegistration1);
-                return new ResponseEntity<String>("\"maxStock Updated successfully \"", HttpStatus.OK);
+                map.clear();
+                map.put(productRegistration1.getMaxStock(),"MAXSTOCKUPDATED");
+                return new ResponseEntity<Map<Long,String>>(map, HttpStatus.OK);
             }
             else{
-                return new ResponseEntity<String>("\"PRODUCTOUTOFSTOCK\"", HttpStatus.OK);
+                map.clear();
+                map.put(productRegistration1.getMaxStock(),"PRODUCTOUTOFSTOCK");
+                return new ResponseEntity<Map<Long,String>>(map, HttpStatus.OK);
             }
         }
-        return new ResponseEntity<String>("\"Not Found \"", HttpStatus.OK);
+        map.clear();
+        map.put(400L,"\"NOTFOUND\"");
+        return new ResponseEntity<Map<Long,String>>(map, HttpStatus.OK);
 
     }
 
+    public ResponseEntity<String> updateMaxStockOnDelete(ProductStockDTO productStockDTO){
+
+        Optional<ProductRegistration> productRegistration = productRegistrationRepository.findById(productStockDTO.getId());
+        if(productRegistration != null){
+            ProductRegistration productRegistration1 = productRegistration.get();
+            productRegistration1.setMaxStock(productRegistration1.getMaxStock() + productStockDTO.getProductQuantity());
+            productRegistrationRepository.save(productRegistration1);
+            return new ResponseEntity<String>("\"MAXSTOCKADDED\"",HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<String>("\"NOTFOUND\"",HttpStatus.OK);
+        }
+    }
 
     public ResponseEntity<String> updateProductRegistration(Long id,ProductRegistrationDTO productRegistrationDTO){
 
