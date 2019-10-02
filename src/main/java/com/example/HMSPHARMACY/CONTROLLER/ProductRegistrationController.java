@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -39,7 +40,7 @@ public class ProductRegistrationController {
 
 
     @PutMapping("/update")
-    public ResponseEntity<String> updateProductStocks(@RequestBody ProductStockDTO productStockDTO){
+    public ResponseEntity<Map<Long,String>> updateProductStocks(@RequestBody ProductStockDTO productStockDTO){
         return productRegistrationService.updateProductStocks(productStockDTO);
     }
 
@@ -54,5 +55,11 @@ return productRegistrationService.updateProductRegistration(id,productRegistrati
         return productRegistrationService.getProductRegistration(id);
 
         }
+
+        @PutMapping("/addmaxstock")
+        public ResponseEntity<String> updateMaxStocksOnDelete(@RequestBody ProductStockDTO productStockDTO){
+        return productRegistrationService.updateMaxStockOnDelete(productStockDTO);
+        }
+
 
  }
