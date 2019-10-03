@@ -27,14 +27,15 @@ public class ProductRegistrationService {
         productRegistration.setDrugFormation(productRegistrationDTO.getDrugFormation());
 //        productRegistration.setStock(productRegistrationDTO.getStock());
         productRegistration.setUnitPrice(productRegistrationDTO.getUnitPrice());
-        productRegistration.setActiveProduct(productRegistrationDTO.getActiveProduct());
+       // productRegistration.setActiveProduct(productRegistrationDTO.getActiveProduct());
         productRegistration.setBoxRate(productRegistrationDTO.getBoxRate());
         productRegistration.setFormula(productRegistrationDTO.getFormula());
         productRegistration.setMaxStock(productRegistrationDTO.getMaxStock());
         productRegistration.setMinStock(productRegistrationDTO.getMinStock());
         productRegistration.setPacking(productRegistrationDTO.getPacking());
         productRegistration.setStatus("Active");
-        productRegistration.setRunningProduct(productRegistrationDTO.getRunningProduct());
+        productRegistration.setState(productRegistrationDTO.getState());
+      //  productRegistration.setRunningProduct(productRegistrationDTO.getRunningProduct());
         productRegistrationRepository.save(productRegistration);
 
         return new ResponseEntity<String>("\"Product Registered successfully saved\"", HttpStatus.OK);
@@ -112,13 +113,14 @@ public class ProductRegistrationService {
 
             productRegistration.setProductName(productRegistrationDTO.getProductName());
             productRegistration.setStatus("Active");
-            productRegistration.setRunningProduct(productRegistrationDTO.getRunningProduct());
+           // productRegistration.setRunningProduct(productRegistrationDTO.getRunningProduct());
             productRegistration.setPacking(productRegistrationDTO.getPacking());
             productRegistration.setMinStock(productRegistrationDTO.getMinStock());
             productRegistration.setMaxStock(productRegistrationDTO.getMaxStock());
             productRegistration.setFormula(productRegistrationDTO.getFormula());
             productRegistration.setBoxRate(productRegistrationDTO.getBoxRate());
-            productRegistration.setActiveProduct(productRegistrationDTO.getActiveProduct());
+          //  productRegistration.setActiveProduct(productRegistrationDTO.getActiveProduct());
+            productRegistration.setState(productRegistrationDTO.getState());
             productRegistration.setDrugFormation(productRegistrationDTO.getDrugFormation());
             productRegistration.setCompanyProd(productRegistrationDTO.getCompanyProd());
             productRegistration.setUnitPrice(productRegistrationDTO.getUnitPrice());
