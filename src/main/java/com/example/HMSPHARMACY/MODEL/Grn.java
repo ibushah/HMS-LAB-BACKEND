@@ -26,7 +26,7 @@ public class Grn {
 
     @ManyToOne
     @JoinColumn(name = "company_id",nullable = false)
-    @JsonIgnore
+
     Company company;
 
 
