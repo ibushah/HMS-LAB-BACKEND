@@ -36,7 +36,7 @@ public class GrnService {
         grn.setProductTotalAmount(grnDTO.getProductTotalAmount());
         grn.setStatus("Active");
         grnRepository.save(grn);
-        return new ResponseEntity<String>("\"Drug formation  successfully saved\"", HttpStatus.OK);
+        return new ResponseEntity<String>("\"Grn successfully saved\"", HttpStatus.OK);
     }
 
     public List<Grn> getAllGrn(){
