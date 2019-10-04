@@ -1,17 +1,17 @@
 package com.example.HMSPHARMACY.SERVICE;
 
+import com.example.HMSPHARMACY.DTO.FilterSalesByDateDTO;
 import com.example.HMSPHARMACY.DTO.SalesDTO;
 import com.example.HMSPHARMACY.MODEL.BulkSave;
-import com.example.HMSPHARMACY.MODEL.ProductRegistration;
 import com.example.HMSPHARMACY.MODEL.Sales;
 import com.example.HMSPHARMACY.REPOSITORY.BulkSaveRepository;
-import com.example.HMSPHARMACY.REPOSITORY.ProductRegistrationRepository;
 import com.example.HMSPHARMACY.REPOSITORY.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -66,5 +66,31 @@ public class SalesService {
         bulkSaveRepository.save(bulkSave);
 
         return bulkSave;
+    }
+
+    public List<BulkSave> getBulkSaveData(){
+        List<BulkSave> bulkSaves = bulkSaveRepository.findAll();
+        return bulkSaves;
+    }
+
+    public List<BulkSave> getBulkSalesDataByDate(FilterSalesByDateDTO filterSalesByDateDTO) throws Exception {
+
+
+
+        if(filterSalesByDateDTO.from != null && filterSalesByDateDTO.till !=null){
+
+            List<BulkSave> bulkSaves = bulkSaveRepository.getBulkSaveByCreatedAt(filterSalesByDateDTO.getFrom(),filterSalesByDateDTO.getTill());
+            return bulkSaves;
+
+        }
+        else{
+            return null;
+        }
+
+    }
+
+    public Date dateformatter(String strDate) throws Exception {
+        Date date1=new SimpleDateFormat("yyyy/MM/dd").parse(strDate);
+        return date1;
     }
 }

@@ -1,10 +1,11 @@
 package com.example.HMSPHARMACY.CONTROLLER;
 
+import com.example.HMSPHARMACY.DTO.FilterSalesByDateDTO;
 import com.example.HMSPHARMACY.DTO.SalesDTO;
+import com.example.HMSPHARMACY.MODEL.BulkSave;
 import com.example.HMSPHARMACY.SERVICE.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,4 +24,19 @@ public class SalesController {
         return salesService.saveSales(salesDTO);
     }
 
+    @GetMapping("/get")
+    public List<BulkSave> getBulkSaveData(){
+        return salesService.getBulkSaveData();
+    }
+
+    @PostMapping("/getfilteredsales")
+    public List<BulkSave> getFilteredSales(@RequestBody FilterSalesByDateDTO filterSalesByDateDTO){
+        try {
+            return salesService.getBulkSalesDataByDate(filterSalesByDateDTO);
+        }
+         catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.HMSPHARMACY.MODEL;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,6 +14,7 @@ public class Sales {
     Long productQuantity ;
     Double productPrice;
     String status;
+    Date createdAt;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
@@ -32,6 +34,14 @@ public class Sales {
 
     public void setProductRegistrations(ProductRegistration productRegistrations) {
         this.productRegistrations = productRegistrations;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Long getId() {

@@ -1,5 +1,6 @@
 package com.example.HMSPHARMACY.MODEL;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 import org.hibernate.annotations.GeneratorType;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
@@ -14,12 +15,14 @@ public class BulkSave {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double total;
-    private String CreatedBy;
-    private String UpdatedBy;
-    private Date CreatedAt;
-    private Date UpdateAt;
+    private String createdBy;
+    private String updatedBy;
+    @Temporal(TemporalType.DATE)
+    private Date createdAt;
+    private Date updateAt;
 
     @OneToMany(mappedBy = "bulksave")
+    @JsonIgnore
     private List<Sales> sales;
 
     public BulkSave() {
@@ -42,35 +45,35 @@ public class BulkSave {
     }
 
     public String getCreatedBy() {
-        return CreatedBy;
+        return createdBy;
     }
 
     public void setCreatedBy(String createdBy) {
-        CreatedBy = createdBy;
+        this.createdBy = createdBy;
     }
 
     public String getUpdatedBy() {
-        return UpdatedBy;
+        return updatedBy;
     }
 
     public void setUpdatedBy(String updatedBy) {
-        UpdatedBy = updatedBy;
+        this.updatedBy = updatedBy;
     }
 
     public Date getCreatedAt() {
-        return CreatedAt;
+        return createdAt;
     }
 
     public void setCreatedAt(Date createdAt) {
-        CreatedAt = createdAt;
+        this.createdAt = createdAt;
     }
 
     public Date getUpdateAt() {
-        return UpdateAt;
+        return updateAt;
     }
 
     public void setUpdateAt(Date updateAt) {
-        UpdateAt = updateAt;
+        this.updateAt = updateAt;
     }
 
     public List<Sales> getSales() {
