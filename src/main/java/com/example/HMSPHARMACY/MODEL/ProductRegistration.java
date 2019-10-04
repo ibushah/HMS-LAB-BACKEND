@@ -18,8 +18,7 @@ public class ProductRegistration {
     Double boxRate;
     Long minStock;
     Long maxStock;
-    Boolean activeProduct;
-    Boolean runningProduct;
+  String state;
     String status;
     Double unitPrice;
 
@@ -43,19 +42,19 @@ public class ProductRegistration {
     public ProductRegistration() {
     }
 
-    public ProductRegistration(Double unitPrice ,String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, String status, Company companyProd, DrugFormation drugFormation) {
+    public ProductRegistration(String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, String state, String status, Double unitPrice, Company companyProd, DrugFormation drugFormation, List<Sales> sales) {
         this.productName = productName;
         this.formula = formula;
         this.packing = packing;
         this.boxRate = boxRate;
         this.minStock = minStock;
         this.maxStock = maxStock;
-        this.activeProduct = activeProduct;
-        this.runningProduct = runningProduct;
+        this.state = state;
         this.status = status;
+        this.unitPrice = unitPrice;
         this.companyProd = companyProd;
         this.drugFormation = drugFormation;
-        this.unitPrice=unitPrice;
+        this.sales = sales;
     }
 
     public Double getUnitPrice() {
@@ -154,20 +153,12 @@ public class ProductRegistration {
         this.maxStock = maxStock;
     }
 
-    public Boolean getActiveProduct() {
-        return activeProduct;
+    public String getState() {
+        return state;
     }
 
-    public void setActiveProduct(Boolean activeProduct) {
-        this.activeProduct = activeProduct;
-    }
-
-    public Boolean getRunningProduct() {
-        return runningProduct;
-    }
-
-    public void setRunningProduct(Boolean runningProduct) {
-        this.runningProduct = runningProduct;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public Company getCompanyProd() {

@@ -13,8 +13,7 @@ public class ProductRegistrationDTO {
         Double boxRate;
         Long minStock;
         Long maxStock;
-        Boolean activeProduct;
-        Boolean runningProduct;
+       String state;
 
         Company companyProd;
 
@@ -24,19 +23,18 @@ public class ProductRegistrationDTO {
     public ProductRegistrationDTO() {
     }
 
-    public ProductRegistrationDTO(Double unitPrice,Long id, String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Boolean activeProduct, Boolean runningProduct, Company companyProd,  DrugFormation drugFormation) {
+    public ProductRegistrationDTO(Long id, Double unitPrice, String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, String state, Company companyProd, DrugFormation drugFormation) {
         this.id = id;
+        this.unitPrice = unitPrice;
         this.productName = productName;
         this.formula = formula;
         this.packing = packing;
         this.boxRate = boxRate;
         this.minStock = minStock;
         this.maxStock = maxStock;
-        this.activeProduct = activeProduct;
-        this.runningProduct = runningProduct;
+        this.state = state;
         this.companyProd = companyProd;
         this.drugFormation = drugFormation;
-        this.unitPrice=unitPrice;
     }
 
     public Double getUnitPrice() {
@@ -103,20 +101,12 @@ public class ProductRegistrationDTO {
         this.maxStock = maxStock;
     }
 
-    public Boolean getActiveProduct() {
-        return activeProduct;
+    public String getState() {
+        return state;
     }
 
-    public void setActiveProduct(Boolean activeProduct) {
-        this.activeProduct = activeProduct;
-    }
-
-    public Boolean getRunningProduct() {
-        return runningProduct;
-    }
-
-    public void setRunningProduct(Boolean runningProduct) {
-        this.runningProduct = runningProduct;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public Company getCompanyProd() {
