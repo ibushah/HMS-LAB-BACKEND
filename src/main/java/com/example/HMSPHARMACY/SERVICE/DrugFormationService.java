@@ -37,7 +37,9 @@ public class DrugFormationService {
             drugFormationRepository.save(drugFormation);
             return new ResponseEntity<String>("\"Drug formation  deleted successfully\"", HttpStatus.OK);
         }
-        else {  return new ResponseEntity<String>("\"Drug Formation not found\"", HttpStatus.NOT_FOUND);}
+        else {
+            return new ResponseEntity<String>("\"Drug Formation not found\"", HttpStatus.NOT_FOUND);
+        }
 }
 
 }
