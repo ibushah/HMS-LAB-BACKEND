@@ -1,16 +1,16 @@
 package com.example.HMSPHARMACY.DTO;
 
-public class Filter_DashboardDTO {
+public class FilterDashboardDTO {
 
     public String from;
     public String till;
 
-    public Filter_DashboardDTO(String from, String till) {
+    public FilterDashboardDTO(String from, String till) {
         this.from = from;
         this.till = till;
     }
 
-    public Filter_DashboardDTO() {
+    public FilterDashboardDTO() {
     }
 
     public String getFrom() {
