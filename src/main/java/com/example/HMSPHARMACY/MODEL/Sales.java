@@ -15,6 +15,8 @@ public class Sales {
     Double productPrice;
     String status;
     Date createdAt;
+    Double totalSellingPrice;
+    Double costPrice;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
@@ -90,5 +92,21 @@ public class Sales {
 
     public void setBulksave(BulkSave bulksave) {
         this.bulksave = bulksave;
+    }
+
+    public Double getTotalSellingPrice() {
+        return totalSellingPrice;
+    }
+
+    public void setTotalSellingPrice(Double totalSellingPrice) {
+        this.totalSellingPrice = totalSellingPrice;
+    }
+
+    public Double getCostPrice() {
+        return costPrice;
+    }
+
+    public void setCostPrice(Double costPrice) {
+        this.costPrice = costPrice;
     }
 }

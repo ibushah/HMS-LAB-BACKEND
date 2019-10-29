@@ -32,7 +32,7 @@ public class SalesService {
         Double total=0D;
         Long remainingStock = 0L;
         for(SalesDTO sale:salesDTOList)
-            total = total + sale.getProductPrice();
+            total = total + sale.getTotalSellingPrice();
 
         BulkSave bulkSave=new BulkSave();
         bulkSave.setCreatedAt(new Date());
@@ -49,6 +49,8 @@ public class SalesService {
             sales1.setProductPrice(salesDto.getProductPrice());
             sales1.setProductName(salesDto.getProductRegistration().getProductName());
             sales1.setProductRegistrations(salesDto.getProductRegistration());
+            sales1.setCostPrice(salesDto.getCostPrice());
+            sales1.setTotalSellingPrice(salesDto.getTotalSellingPrice());
             sales.add(sales1);
 
         });
@@ -73,7 +75,7 @@ public class SalesService {
         return bulkSaves;
     }
 
-    public List<BulkSave> getBulkSalesDataByDate(FilterSalesByDateDTO filterSalesByDateDTO) throws Exception {
+    public List<BulkSave> getBulkSalesDataByDate(FilterSalesByDateDTO filterSalesByDateDTO) {
 
 
 
