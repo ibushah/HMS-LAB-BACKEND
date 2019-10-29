@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,22 +21,25 @@ public class GrnService {
     @Autowired
     CompanyRepository companyRepository;
 
+    @Transactional
     public ResponseEntity<String> postGrn(GrnDTO grnDTO){
-        Grn grn=new Grn();
-        grn.setCompany(grnDTO.getCompany());
-        grn.setBonusQuantity(grnDTO.getBonusQuantity());
-        grn.setBoxRate(grnDTO.getBoxRate());
-        grn.setBoxTip(grnDTO.getBoxTip());
-        grn.setDiscount(grnDTO.getDiscount());
-        grn.setDiscountedAmount(grnDTO.getDiscountedAmount());
-        grn.setInvoice(grnDTO.getInvoice());
-        grn.setPacking(grnDTO.getPacking());
-        grn.setReceivedBy(grnDTO.getReceivedBy());
-        grn.setRequiredQuantity(grnDTO.getRequiredQuantity());
-        grn.setProductName(grnDTO.getProductName());
-        grn.setProductTotalAmount(grnDTO.getProductTotalAmount());
-        grn.setStatus("Active");
-        grnRepository.save(grn);
+
+            Grn grn = new Grn();
+            grn.setCompany(grnDTO.getCompany());
+            grn.setBonusQuantity(grnDTO.getBonusQuantity());
+            grn.setBoxRate(grnDTO.getBoxRate());
+            grn.setBoxTip(grnDTO.getBoxTip());
+            grn.setDiscount(grnDTO.getDiscount());
+            grn.setDiscountedAmount(grnDTO.getDiscountedAmount());
+            grn.setInvoice(grnDTO.getInvoice());
+            grn.setPacking(grnDTO.getPacking());
+            grn.setReceivedBy(grnDTO.getReceivedBy());
+            grn.setRequiredQuantity(grnDTO.getRequiredQuantity());
+            grn.setProductName(grnDTO.getProductName());
+            grn.setProductTotalAmount(grnDTO.getProductTotalAmount());
+            grn.setStatus("Active");
+            grn = grnRepository.save(grn);
+
         return new ResponseEntity<String>("\"Grn successfully saved\"", HttpStatus.OK);
     }
 

@@ -31,12 +31,8 @@ public class SalesController {
 
     @PostMapping("/getfilteredsales")
     public List<BulkSave> getFilteredSales(@RequestBody FilterSalesByDateDTO filterSalesByDateDTO){
-        try {
+
             return salesService.getBulkSalesDataByDate(filterSalesByDateDTO);
-        }
-         catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+
     }
 }
