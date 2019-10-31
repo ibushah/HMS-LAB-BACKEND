@@ -11,6 +11,7 @@ public class SalesDTO {
     String status;
     Double costPrice;
     Double totalSellingPrice;
+    String email;
 
     public SalesDTO() {
     }
@@ -69,5 +70,13 @@ public class SalesDTO {
 
     public void setCostPrice(Double costPrice) {
         this.costPrice = costPrice;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
