@@ -1,6 +1,7 @@
 package com.example.HMSPHARMACY.DTO;
 
 import com.example.HMSPHARMACY.MODEL.Company;
+import com.example.HMSPHARMACY.MODEL.UserLoginInfo;
 
 public class GrnDTO {
 
@@ -16,6 +17,9 @@ public class GrnDTO {
     Double discountedAmount;
     Double productTotalAmount;
     Double boxRate;
+    Double transactionAmount;
+    String transactionType;
+    UserLoginInfo userLoginInfo;
 
     Company company;
 
@@ -140,5 +144,29 @@ public class GrnDTO {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public Double getTransactionAmount() {
+        return transactionAmount;
+    }
+
+    public void setTransactionAmount(Double transactionAmount) {
+        this.transactionAmount = transactionAmount;
+    }
+
+    public String getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
+    }
+
+    public UserLoginInfo getUserLoginInfo() {
+        return userLoginInfo;
+    }
+
+    public void setUserLoginInfo(UserLoginInfo userLoginInfo) {
+        this.userLoginInfo = userLoginInfo;
     }
 }

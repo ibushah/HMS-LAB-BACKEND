@@ -26,6 +26,7 @@ public class SalesService {
     BulkSaveRepository bulkSaveRepository;
 
 
+
     public ResponseEntity<String> saveSales(List<SalesDTO> salesDTOList){
 
         List<Sales> sales = new ArrayList<>();
@@ -33,6 +34,7 @@ public class SalesService {
         Long remainingStock = 0L;
         for(SalesDTO sale:salesDTOList)
             total = total + sale.getTotalSellingPrice();
+
 
         BulkSave bulkSave=new BulkSave();
         bulkSave.setCreatedAt(new Date());

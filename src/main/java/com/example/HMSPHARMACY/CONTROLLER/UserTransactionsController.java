@@ -19,7 +19,7 @@ public class UserTransactionsController {
 
     @PostMapping("/")
     public ResponseEntity<String> saveUserTransactions(@RequestBody UserTransactionsDTO userTransactionsDTO){
-        return userTransactionsService.saveUserTransactions(userTransactionsDTO);
+        return userTransactionsService.saveUserTransactionsForSales(userTransactionsDTO);
     }
 
     @PostMapping("/getsalestotal")

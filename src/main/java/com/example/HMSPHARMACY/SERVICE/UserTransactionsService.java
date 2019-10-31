@@ -1,7 +1,7 @@
 package com.example.HMSPHARMACY.SERVICE;
 
-import com.example.HMSPHARMACY.DTO.FilterUserDetailsDTO;
-import com.example.HMSPHARMACY.DTO.UserTransactionsDTO;
+import com.example.HMSPHARMACY.DTO.*;
+import com.example.HMSPHARMACY.MODEL.BulkSave;
 import com.example.HMSPHARMACY.MODEL.UserLoginInfo;
 import com.example.HMSPHARMACY.MODEL.UserTransactions;
 import com.example.HMSPHARMACY.REPOSITORY.UserLoginInfoRepository;
@@ -25,7 +25,23 @@ public class UserTransactionsService {
     @Autowired
     UserLoginInfoRepository userLoginInfoRepository;
 
-    public ResponseEntity<String> saveUserTransactions(UserTransactionsDTO userTransactionsDTO){
+    public ResponseEntity<String> saveUserTransactionsForGrn(GrnDTO grnDTO, Long id){
+
+        UserTransactions userTransactions = new UserTransactions();
+
+        userTransactions.setTransactionAmount(grnDTO.getTransactionAmount());
+        userTransactions.setTransactionDate(new Date());
+        userTransactions.setUserLoginInfo(grnDTO.getUserLoginInfo());
+        userTransactions.setTransactionBy(grnDTO.getUserLoginInfo().getEmail());
+        userTransactions.setTransactionType(grnDTO.getTransactionType());
+        userTransactions.setRefId(id);
+        userTransactionsRepo.save(userTransactions);
+
+        return new ResponseEntity<String>("\"UserTransactions successfully saved\"", HttpStatus.OK);
+
+    }
+
+    public ResponseEntity<String> saveUserTransactionsForSales(UserTransactionsDTO userTransactionsDTO){
 
         UserTransactions userTransactions = new UserTransactions();
 
