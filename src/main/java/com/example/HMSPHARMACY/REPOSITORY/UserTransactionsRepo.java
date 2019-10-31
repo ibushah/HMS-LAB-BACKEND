@@ -15,6 +15,7 @@ public interface UserTransactionsRepo extends JpaRepository<UserTransactions,Lon
     @Query(value = "SELECT SUM(transaction_amount) AS Total FROM user_transactions where (transaction_date between :from and :till) AND (user_id=:id) and (transaction_type='GRN')",nativeQuery = true)
     public Double getGrnTotal(@Param("from") String from,@Param("till") String till,@Param("id") Long id);
 
+    public UserTransactions findByRefId(Long id);
 //    @Query(value = "SELECT SUM(transaction_amount) AS Total FROM user_transactions where (transaction_by=:email) AND (transaction_date between :from and :till) and (transaction_type='POS')",nativeQuery = true)
 //    public Double getSalesTotalByTransactionByAndTransactionType(@Param("email") String email,@Param("from") String from,@Param("till") String till);
 //

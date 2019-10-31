@@ -16,6 +16,7 @@ public class UserTransactions {
     @Temporal(TemporalType.DATE)
     Date transactionDate;
     String transactionBy;
+    Long refId;
 
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
@@ -78,5 +79,13 @@ public class UserTransactions {
 
     public void setUserLoginInfo(UserLoginInfo userLoginInfo) {
         this.userLoginInfo = userLoginInfo;
+    }
+
+    public Long getRefId() {
+        return refId;
+    }
+
+    public void setRefId(Long refId) {
+        this.refId = refId;
     }
 }

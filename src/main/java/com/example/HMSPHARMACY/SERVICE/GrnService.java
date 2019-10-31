@@ -1,15 +1,19 @@
 package com.example.HMSPHARMACY.SERVICE;
 
 import com.example.HMSPHARMACY.DTO.GrnDTO;
+import com.example.HMSPHARMACY.DTO.UserTransactionsDTO;
 import com.example.HMSPHARMACY.MODEL.Grn;
+import com.example.HMSPHARMACY.MODEL.UserTransactions;
 import com.example.HMSPHARMACY.REPOSITORY.CompanyRepository;
 import com.example.HMSPHARMACY.REPOSITORY.GrnRepository;
+import com.example.HMSPHARMACY.REPOSITORY.UserTransactionsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +24,12 @@ public class GrnService {
 
     @Autowired
     CompanyRepository companyRepository;
+
+    @Autowired
+    UserTransactionsService userTransactionsService;
+
+    @Autowired
+    UserTransactionsRepo userTransactionsRepo;
 
     @Transactional
     public ResponseEntity<String> postGrn(GrnDTO grnDTO){
@@ -39,6 +49,16 @@ public class GrnService {
             grn.setProductTotalAmount(grnDTO.getProductTotalAmount());
             grn.setStatus("Active");
             grn = grnRepository.save(grn);
+
+            //saving grn transaction in user transactions
+            userTransactionsService.saveUserTransactionsForGrn(grnDTO,grn.getId());
+//        UserTransactions userTransactions = new UserTransactions();
+//        userTransactions.setTransactionType("GRN");
+//        userTransactions.setTransactionAmount(grn.getDiscountedAmount());
+//        userTransactions.setTransactionDate(new Date());
+//        userTransactions.setUserLoginInfo(userTransactionsDTO.getUserLoginInfo());
+//        userTransactions.setTransactionBy(userTransactionsDTO.getUserLoginInfo().getEmail());
+
 
         return new ResponseEntity<String>("\"Grn successfully saved\"", HttpStatus.OK);
     }
@@ -78,6 +98,10 @@ public class GrnService {
             grn.setProductTotalAmount(grnDTO.getProductTotalAmount());
             grn.setStatus("Active");
             grnRepository.save(grn);
+
+            //updating user transactions
+            updateUserTransactions(id, grnDTO);
+
             return new ResponseEntity<>("\"Grn updated successfully\"",HttpStatus.OK);
         }
         return new ResponseEntity<>("\"Grn  Not found\"",HttpStatus.NOT_FOUND);
@@ -89,6 +113,16 @@ public class GrnService {
            return grn.get();
        else
           return new Grn();
+
+    }
+
+    public void updateUserTransactions(Long id,GrnDTO grnDTO){
+        UserTransactions userTransactions = userTransactionsRepo.findByRefId(id);
+        if (userTransactions != null) {
+            userTransactions.setTransactionAmount(grnDTO.getTransactionAmount());
+            userTransactions.setTransactionDate(new Date());
+            userTransactionsRepo.save(userTransactions);
+        }
 
     }
 }
