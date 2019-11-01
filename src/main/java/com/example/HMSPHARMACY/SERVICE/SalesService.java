@@ -3,8 +3,10 @@ package com.example.HMSPHARMACY.SERVICE;
 import com.example.HMSPHARMACY.DTO.FilterSalesByDateDTO;
 import com.example.HMSPHARMACY.DTO.SalesDTO;
 import com.example.HMSPHARMACY.MODEL.BulkSave;
+import com.example.HMSPHARMACY.MODEL.ProductRegistration;
 import com.example.HMSPHARMACY.MODEL.Sales;
 import com.example.HMSPHARMACY.REPOSITORY.BulkSaveRepository;
+import com.example.HMSPHARMACY.REPOSITORY.ProductRegistrationRepository;
 import com.example.HMSPHARMACY.REPOSITORY.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SalesService {
@@ -24,6 +27,9 @@ public class SalesService {
 
     @Autowired
     BulkSaveRepository bulkSaveRepository;
+
+    @Autowired
+    ProductRegistrationRepository productRegistrationRepository;
 
 
     public ResponseEntity<String> saveSales(List<SalesDTO> salesDTOList){
@@ -88,6 +94,18 @@ public class SalesService {
         }
 
     }
+
+    public ProductRegistration getProductById(Long id)
+    {
+       Optional<ProductRegistration> productRegistration= productRegistrationRepository.findById(id);
+
+       if(!productRegistration.isPresent())
+           return null;
+       else
+           return productRegistration.get();
+    }
+
+
 
     public Date dateformatter(String strDate) throws Exception {
         Date date1=new SimpleDateFormat("yyyy/MM/dd").parse(strDate);

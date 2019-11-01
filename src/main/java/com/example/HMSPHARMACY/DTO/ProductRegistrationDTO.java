@@ -2,7 +2,6 @@ package com.example.HMSPHARMACY.DTO;
 
 import com.example.HMSPHARMACY.MODEL.Company;
 import com.example.HMSPHARMACY.MODEL.DrugFormation;
-import com.example.HMSPHARMACY.MODEL.Stock;
 
 public class ProductRegistrationDTO {
         Long id;
@@ -14,6 +13,7 @@ public class ProductRegistrationDTO {
         Long minStock;
         Long maxStock;
        String state;
+       Double sellingPrice;
 
         Company companyProd;
 
@@ -23,7 +23,7 @@ public class ProductRegistrationDTO {
     public ProductRegistrationDTO() {
     }
 
-    public ProductRegistrationDTO(Long id, Double unitPrice, String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, String state, Company companyProd, DrugFormation drugFormation) {
+    public ProductRegistrationDTO(Long id, Double unitPrice, String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, String state, Double sellingPrice, Company companyProd, DrugFormation drugFormation) {
         this.id = id;
         this.unitPrice = unitPrice;
         this.productName = productName;
@@ -33,6 +33,7 @@ public class ProductRegistrationDTO {
         this.minStock = minStock;
         this.maxStock = maxStock;
         this.state = state;
+        this.sellingPrice = sellingPrice;
         this.companyProd = companyProd;
         this.drugFormation = drugFormation;
     }
@@ -111,6 +112,14 @@ public class ProductRegistrationDTO {
 
     public Company getCompanyProd() {
         return companyProd;
+    }
+
+    public Double getSellingPrice() {
+        return sellingPrice;
+    }
+
+    public void setSellingPrice(Double sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
 
     public void setCompanyProd(Company companyProd) {

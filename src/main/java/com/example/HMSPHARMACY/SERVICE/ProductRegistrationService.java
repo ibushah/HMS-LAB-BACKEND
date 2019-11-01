@@ -4,11 +4,16 @@ import com.example.HMSPHARMACY.DTO.ProductRegistrationDTO;
 import com.example.HMSPHARMACY.DTO.ProductStockDTO;
 import com.example.HMSPHARMACY.MODEL.ProductRegistration;
 import com.example.HMSPHARMACY.REPOSITORY.ProductRegistrationRepository;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +30,8 @@ public class ProductRegistrationService {
         productRegistration.setProductName(productRegistrationDTO.getProductName());
         productRegistration.setCompanyProd(productRegistrationDTO.getCompanyProd());
         productRegistration.setDrugFormation(productRegistrationDTO.getDrugFormation());
-//        productRegistration.setStock(productRegistrationDTO.getStock());
+        productRegistration.setSellingPrice(productRegistrationDTO.getSellingPrice());
         productRegistration.setUnitPrice(productRegistrationDTO.getUnitPrice());
-       // productRegistration.setActiveProduct(productRegistrationDTO.getActiveProduct());
         productRegistration.setBoxRate(productRegistrationDTO.getBoxRate());
         productRegistration.setFormula(productRegistrationDTO.getFormula());
         productRegistration.setMaxStock(productRegistrationDTO.getMaxStock());
@@ -35,7 +39,6 @@ public class ProductRegistrationService {
         productRegistration.setPacking(productRegistrationDTO.getPacking());
         productRegistration.setStatus("Active");
         productRegistration.setState(productRegistrationDTO.getState());
-      //  productRegistration.setRunningProduct(productRegistrationDTO.getRunningProduct());
         productRegistrationRepository.save(productRegistration);
 
         return new ResponseEntity<String>("\"Product Registered successfully saved\"", HttpStatus.OK);
@@ -45,7 +48,10 @@ public class ProductRegistrationService {
 
     public List<ProductRegistration> getAllProductRegistration() {
         List<ProductRegistration> productRegistration = productRegistrationRepository.findByStatus("Active");
+        productRegistration.forEach((v)-> v.setQrcode(getQRCodeImage(v.getId())));
         return productRegistration;
+
+
 
 
     }
@@ -135,14 +141,25 @@ public class ProductRegistrationService {
     }
     public ProductRegistration getProductRegistration(Long id){
        ProductRegistration productRegistration= productRegistrationRepository.findById(id).get();
+       productRegistration.setQrcode(getQRCodeImage(id));
+
         if(productRegistration!=null){
             return productRegistration;
         }
         else {
-
             return null;
         }
     }
-
+    public static byte[] getQRCodeImage(Long  id) {
+        try {
+            QRCodeWriter qrCodeWriter = new QRCodeWriter();
+            BitMatrix bitMatrix = qrCodeWriter.encode(id.toString(), BarcodeFormat.QR_CODE, 200, 200);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            MatrixToImageWriter.writeToStream(bitMatrix, "png", byteArrayOutputStream);
+            return byteArrayOutputStream.toByteArray();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 }
