@@ -49,7 +49,7 @@ public class HmsPharmacyApplication {
 		connector.setScheme("http");
 		connector.setPort(8084);
 		connector.setSecure(false);
-		connector.setRedirectPort(8446);
+		connector.setRedirectPort(8447);
 		return connector;
 	}
 
