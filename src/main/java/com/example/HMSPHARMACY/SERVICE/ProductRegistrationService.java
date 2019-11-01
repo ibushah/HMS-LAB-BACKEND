@@ -26,22 +26,40 @@ public class ProductRegistrationService {
     ProductRegistrationRepository productRegistrationRepository;
 
     public ResponseEntity<String> postProductRegistration(ProductRegistrationDTO productRegistrationDTO) {
+        String productName = "";
         ProductRegistration productRegistration = new ProductRegistration();
-        productRegistration.setProductName(productRegistrationDTO.getProductName());
-        productRegistration.setCompanyProd(productRegistrationDTO.getCompanyProd());
-        productRegistration.setDrugFormation(productRegistrationDTO.getDrugFormation());
-        productRegistration.setSellingPrice(productRegistrationDTO.getSellingPrice());
-        productRegistration.setUnitPrice(productRegistrationDTO.getUnitPrice());
-        productRegistration.setBoxRate(productRegistrationDTO.getBoxRate());
-        productRegistration.setFormula(productRegistrationDTO.getFormula());
-        productRegistration.setMaxStock(productRegistrationDTO.getMaxStock());
-        productRegistration.setMinStock(productRegistrationDTO.getMinStock());
-        productRegistration.setPacking(productRegistrationDTO.getPacking());
-        productRegistration.setStatus("Active");
-        productRegistration.setState(productRegistrationDTO.getState());
-        productRegistrationRepository.save(productRegistration);
 
-        return new ResponseEntity<String>("\"Product Registered successfully saved\"", HttpStatus.OK);
+        try{
+            productName = productRegistrationRepository.findByProductName(productRegistrationDTO.getProductName().toLowerCase());
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        if(productName!=null) {
+            return new ResponseEntity<String>("\"DUPLICATE\"", HttpStatus.ALREADY_REPORTED);
+        }
+        else{
+
+            productRegistration.setProductName(productRegistrationDTO.getProductName());
+            productRegistration.setCompanyProd(productRegistrationDTO.getCompanyProd());
+            productRegistration.setDrugFormation(productRegistrationDTO.getDrugFormation());
+//        productRegistration.setStock(productRegistrationDTO.getStock());
+            productRegistration.setUnitPrice(productRegistrationDTO.getUnitPrice());
+            // productRegistration.setActiveProduct(productRegistrationDTO.getActiveProduct());
+            productRegistration.setBoxRate(productRegistrationDTO.getBoxRate());
+            productRegistration.setFormula(productRegistrationDTO.getFormula());
+            productRegistration.setMaxStock(productRegistrationDTO.getMaxStock());
+            productRegistration.setMinStock(productRegistrationDTO.getMinStock());
+            productRegistration.setPacking(productRegistrationDTO.getPacking());
+            productRegistration.setStatus("Active");
+            productRegistration.setState(productRegistrationDTO.getState());
+            //  productRegistration.setRunningProduct(productRegistrationDTO.getRunningProduct());
+            productRegistrationRepository.save(productRegistration);
+
+            return new ResponseEntity<String>("\"Product Registered successfully saved\"", HttpStatus.OK);
+
+
+        }
+
 
 
     }

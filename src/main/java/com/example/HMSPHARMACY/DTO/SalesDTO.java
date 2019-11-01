@@ -9,6 +9,9 @@ public class SalesDTO {
     Long productQuantity ;
     Double productPrice;
     String status;
+    Double costPrice;
+    Double totalSellingPrice;
+    String email;
 
     public SalesDTO() {
     }
@@ -51,5 +54,29 @@ public class SalesDTO {
 
     public void setProductRegistration(ProductRegistration productRegistration) {
         this.productRegistration = productRegistration;
+    }
+
+    public Double getTotalSellingPrice() {
+        return totalSellingPrice;
+    }
+
+    public void setTotalSellingPrice(Double totalSellingPrice) {
+        this.totalSellingPrice = totalSellingPrice;
+    }
+
+    public Double getCostPrice() {
+        return costPrice;
+    }
+
+    public void setCostPrice(Double costPrice) {
+        this.costPrice = costPrice;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -2,6 +2,7 @@ package com.example.HMSPHARMACY.SERVICE;
 
 import com.example.HMSPHARMACY.DTO.CompanyDTO;
 import com.example.HMSPHARMACY.MODEL.Company;
+import com.example.HMSPHARMACY.MODEL.ProductRegistration;
 import com.example.HMSPHARMACY.REPOSITORY.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,15 +20,25 @@ public class CompanyService {
 
     public ResponseEntity<String> postCompany(CompanyDTO companyDTO)
     {
-
+        String companyName = "";
         Company company=new Company();
-        company.setName(companyDTO.getName());
-        company.setDiscount(companyDTO.getDiscount());
-        company.setStatus("Active");
-        companyRepository.save(company);
+        try{
+            companyName = companyRepository.findByName(companyDTO.getName().toLowerCase());
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        if(companyName!=null) {
+            return new ResponseEntity<String>("\"DUPLICATE\"", HttpStatus.ALREADY_REPORTED);
+        }
+        else {
 
-        return new ResponseEntity<String>("\"Company successfully saved\"", HttpStatus.OK);
+            company.setName(companyDTO.getName());
+            company.setDiscount(companyDTO.getDiscount());
+            company.setStatus("Active");
+            companyRepository.save(company);
 
+            return new ResponseEntity<String>("\"Company successfully saved\"", HttpStatus.OK);
+        }
     }
 
     public List<Company> getCompanies()

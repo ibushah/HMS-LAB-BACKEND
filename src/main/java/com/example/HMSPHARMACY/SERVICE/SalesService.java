@@ -32,17 +32,27 @@ public class SalesService {
     ProductRegistrationRepository productRegistrationRepository;
 
 
+
     public ResponseEntity<String> saveSales(List<SalesDTO> salesDTOList){
 
         List<Sales> sales = new ArrayList<>();
         Double total=0D;
         Long remainingStock = 0L;
+        String user = "";
         for(SalesDTO sale:salesDTOList)
-            total = total + sale.getProductPrice();
+            total = total + sale.getTotalSellingPrice();
+
+//        for(SalesDTO salesDTO: salesDTOList){
+//            user = salesDTO.getEmail();
+//            break;
+//        }
+        for(int i = 0; i < 1; i++){
+          user = salesDTOList.get(i).getEmail();
+        }
 
         BulkSave bulkSave=new BulkSave();
         bulkSave.setCreatedAt(new Date());
-        bulkSave.setCreatedBy("System");
+        bulkSave.setCreatedBy(user);
         bulkSave.setTotal(total);
         BulkSave bulkSave1= saveBulk(bulkSave);
        
@@ -55,6 +65,8 @@ public class SalesService {
             sales1.setProductPrice(salesDto.getProductPrice());
             sales1.setProductName(salesDto.getProductRegistration().getProductName());
             sales1.setProductRegistrations(salesDto.getProductRegistration());
+            sales1.setCostPrice(salesDto.getCostPrice());
+            sales1.setTotalSellingPrice(salesDto.getTotalSellingPrice());
             sales.add(sales1);
 
         });
@@ -79,7 +91,7 @@ public class SalesService {
         return bulkSaves;
     }
 
-    public List<BulkSave> getBulkSalesDataByDate(FilterSalesByDateDTO filterSalesByDateDTO) throws Exception {
+    public List<BulkSave> getBulkSalesDataByDate(FilterSalesByDateDTO filterSalesByDateDTO) {
 
 
 
