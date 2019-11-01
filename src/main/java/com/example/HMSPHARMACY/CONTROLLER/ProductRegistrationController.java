@@ -34,10 +34,8 @@ public class ProductRegistrationController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteProductRegistration(@PathVariable ("id") Long id){
-
         return productRegistrationService.deleteProductRegistration(id);
-        }
-
+    }
 
     @PutMapping("/update")
     public ResponseEntity<Map<Long,String>> updateProductStocks(@RequestBody ProductStockDTO productStockDTO){
@@ -60,6 +58,5 @@ return productRegistrationService.updateProductRegistration(id,productRegistrati
         public ResponseEntity<String> updateMaxStocksOnDelete(@RequestBody ProductStockDTO productStockDTO){
         return productRegistrationService.updateMaxStockOnDelete(productStockDTO);
         }
-
 
  }

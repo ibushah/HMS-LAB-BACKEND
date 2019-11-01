@@ -1,6 +1,5 @@
 package com.example.HMSPHARMACY.MODEL;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -18,9 +17,11 @@ public class ProductRegistration {
     Double boxRate;
     Long minStock;
     Long maxStock;
-  String state;
+    Double sellingPrice;
+    String state;
     String status;
     Double unitPrice;
+    byte[] qrcode;
 
     @ManyToOne
     @JoinColumn(name = "company_id",nullable = false)
@@ -42,13 +43,14 @@ public class ProductRegistration {
     public ProductRegistration() {
     }
 
-    public ProductRegistration(String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, String state, String status, Double unitPrice, Company companyProd, DrugFormation drugFormation, List<Sales> sales) {
+    public ProductRegistration(String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Double sellingPrice, String state, String status, Double unitPrice, Company companyProd, DrugFormation drugFormation, List<Sales> sales) {
         this.productName = productName;
         this.formula = formula;
         this.packing = packing;
         this.boxRate = boxRate;
         this.minStock = minStock;
         this.maxStock = maxStock;
+        this.sellingPrice = sellingPrice;
         this.state = state;
         this.status = status;
         this.unitPrice = unitPrice;
@@ -89,13 +91,13 @@ public class ProductRegistration {
         this.drugFormation = drugFormation;
     }
 
-//    public Stock getStock() {
-//        return stock;
-//    }
-//
-//    public void setStock(Stock stock) {
-//        this.stock = stock;
-//    }
+    public Double getSellingPrice() {
+        return sellingPrice;
+    }
+
+    public void setSellingPrice(Double sellingPrice) {
+        this.sellingPrice = sellingPrice;
+    }
 
     public Long getId() {
         return id;
@@ -169,5 +171,11 @@ public class ProductRegistration {
         this.companyProd = companyProd;
     }
 
+    public byte[] getQrcode() {
+        return qrcode;
+    }
 
+    public void setQrcode(byte[] qrcode) {
+        this.qrcode = qrcode;
+    }
 }
