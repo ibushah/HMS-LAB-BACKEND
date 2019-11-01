@@ -45,6 +45,7 @@ public class UserTransactionsService {
 
         UserTransactions userTransactions = new UserTransactions();
 
+//        Date date = new Date();
         userTransactions.setTransactionAmount(userTransactionsDTO.getTransactionAmount());
         userTransactions.setTransactionDate(new Date());
         userTransactions.setUserLoginInfo(userTransactionsDTO.getUserLoginInfo());
