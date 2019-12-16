@@ -180,4 +180,8 @@ public class ProductRegistrationService {
         }
     }
 
+    public double getregisteredproductcount(){
+        return productRegistrationRepository.getAllRegisteredProducts();
+    }
+
 }
