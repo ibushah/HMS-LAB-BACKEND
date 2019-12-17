@@ -34,9 +34,14 @@ public class DispensaryService {
 
     public List<Dispensary> getDispensaries()
     {
-        List<Dispensary> dispensary = dispensaryRepository.findByStatus("ACTIVE");
+        List<Dispensary> dispensary = dispensaryRepository.findAll();
         return dispensary;
 
+    }
+
+    public Dispensary getDispensaryById(Long id){
+        Optional<Dispensary> dispensary = dispensaryRepository.findById(id);
+        return dispensary.get();
     }
 
     public ResponseEntity<String> updateDispensary(Long id, DispensaryDTO dispensary){
@@ -51,6 +56,22 @@ public class DispensaryService {
             dispensary2.setPrice(dispensary.getPrice());
             dispensary2.setStatus(dispensary.getStatus());
             dispensaryRepository.save(dispensary2);
+            return new ResponseEntity<>("\"Dispensary Updated successfully\"", HttpStatus.OK);
+        }
+
+        else {
+            return new ResponseEntity<>("\"Dispensary Not found\"", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<String> updateStatus(Long id, DispensaryDTO dispensary){
+
+
+        Optional<Dispensary> dispensary1 = dispensaryRepository.findById(id);
+        if(dispensary1.isPresent()){
+            Dispensary dispensarydata = dispensary1.get();
+            dispensarydata.setStatus("ACTIVE");
+            dispensaryRepository.save(dispensarydata);
             return new ResponseEntity<>("\"Dispensary Updated successfully\"", HttpStatus.OK);
         }
 
