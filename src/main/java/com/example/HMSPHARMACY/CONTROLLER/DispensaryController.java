@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/dispensary")
 public class DispensaryController {
@@ -29,6 +30,12 @@ public class DispensaryController {
         return dispensaryService.getDispensaries();
     }
 
+    @GetMapping("/{id}")
+    public Dispensary getDispensariesById(@PathVariable ("id") Long id)
+    {
+        return dispensaryService.getDispensaryById(id);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteDispensary(@PathVariable ("id") Long id) {
         return dispensaryService.deleteDispensary(id);
@@ -44,4 +51,8 @@ public class DispensaryController {
         return dispensaryService.sellDispensary(quantity, dispensary);
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity updateStatus(@PathVariable ("id") Long id, @RequestBody DispensaryDTO dispensary) {
+        return dispensaryService.updateStatus(id, dispensary);
+    }
 }
