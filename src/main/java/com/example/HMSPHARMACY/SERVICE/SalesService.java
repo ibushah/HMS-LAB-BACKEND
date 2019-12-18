@@ -123,4 +123,8 @@ public class SalesService {
         Date date1=new SimpleDateFormat("yyyy/MM/dd").parse(strDate);
         return date1;
     }
+
+    public double getprofit(){
+        return salesRepository.getProfit();
+    }
 }

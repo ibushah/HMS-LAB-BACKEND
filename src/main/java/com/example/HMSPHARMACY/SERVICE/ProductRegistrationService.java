@@ -180,8 +180,11 @@ public class ProductRegistrationService {
         }
     }
 
-    public double getregisteredproductcount(){
+    public long getregisteredproductcount(){
         return productRegistrationRepository.getAllRegisteredProducts();
     }
 
+    public double getTotalUnitPrice(){
+        return productRegistrationRepository.getTotalUnitPrice();
+    }
 }

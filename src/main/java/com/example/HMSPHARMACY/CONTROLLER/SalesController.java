@@ -40,4 +40,9 @@ public class SalesController {
     @GetMapping("/product/{id}")
     public ProductRegistration getProductById(@PathVariable("id") Long id)
     {return salesService.getProductById(id);}
+
+    @GetMapping("/getprofit")
+    public double getprofit (){
+        return salesService.getprofit();
+    }
 }

@@ -66,4 +66,9 @@ public class ProductRegistrationController {
         return productRegistrationService.getregisteredproductcount();
         }
 
+        @GetMapping("/totalunitprice")
+        public double totalunitprice (){
+            return productRegistrationService.getTotalUnitPrice();
+        }
+
  }
