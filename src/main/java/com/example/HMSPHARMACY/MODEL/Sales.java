@@ -14,6 +14,7 @@ public class Sales {
     Long productQuantity ;
     Double productPrice;
     String status;
+    @Temporal(TemporalType.DATE)
     Date createdAt;
     Double totalSellingPrice;
     Double costPrice;
