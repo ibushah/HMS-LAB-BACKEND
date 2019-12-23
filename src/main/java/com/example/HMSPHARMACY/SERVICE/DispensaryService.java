@@ -64,7 +64,7 @@ public class DispensaryService {
         }
     }
 
-    public ResponseEntity<String> updateStatus(Long id, DispensaryDTO dispensary){
+    public ResponseEntity<String> updateStatus(Long id){
 
 
         Optional<Dispensary> dispensary1 = dispensaryRepository.findById(id);
