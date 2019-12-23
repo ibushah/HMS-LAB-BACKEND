@@ -1,6 +1,7 @@
 package com.example.HMSPHARMACY.CONTROLLER;
 
 
+import com.example.HMSPHARMACY.DTO.ChartDTO;
 import com.example.HMSPHARMACY.DTO.ProductRegistrationDTO;
 import com.example.HMSPHARMACY.DTO.ProductStockDTO;
 import com.example.HMSPHARMACY.MODEL.ProductRegistration;
@@ -69,6 +70,11 @@ public class ProductRegistrationController {
         @GetMapping("/totalunitprice")
         public double totalunitprice (){
             return productRegistrationService.getTotalUnitPrice();
+        }
+
+        @GetMapping("/lesstockproducts")
+        public List<ChartDTO> lessstockproducts (){
+            return productRegistrationService.getLessStockProducts();
         }
 
  }
