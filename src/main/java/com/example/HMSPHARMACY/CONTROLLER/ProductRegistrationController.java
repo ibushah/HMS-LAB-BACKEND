@@ -37,19 +37,21 @@ public class ProductRegistrationController {
         return productRegistrationService.deleteProductRegistration(id);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Map<Long,String>> updateProductStocks(@RequestBody ProductStockDTO productStockDTO){
+        @PutMapping("/update")
+        public ResponseEntity<Map<Long,String>> updateProductStocks(@RequestBody ProductStockDTO productStockDTO){
         return productRegistrationService.updateProductStocks(productStockDTO);
-    }
-
-        @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateProductRegistration(@PathVariable("id") Long id ,@RequestBody ProductRegistrationDTO productRegistrationDTO )
-        {
-return productRegistrationService.updateProductRegistration(id,productRegistrationDTO);
         }
 
+
+        @PutMapping("/update/{id}")
+        public ResponseEntity<String> updateProductRegistration(@PathVariable("id") Long id ,@RequestBody ProductRegistrationDTO productRegistrationDTO ){
+
+            return productRegistrationService.updateProductRegistration(id,productRegistrationDTO);
+        }
+
+
         @GetMapping("/getOne/{id}")
-    public ProductRegistration getProductRegistrationById(@PathVariable ("id") Long id){
+        public ProductRegistration getProductRegistrationById(@PathVariable ("id") Long id){
         return productRegistrationService.getProductRegistration(id);
 
         }
@@ -57,6 +59,11 @@ return productRegistrationService.updateProductRegistration(id,productRegistrati
         @PutMapping("/addmaxstock")
         public ResponseEntity<String> updateMaxStocksOnDelete(@RequestBody ProductStockDTO productStockDTO){
         return productRegistrationService.updateMaxStockOnDelete(productStockDTO);
+        }
+
+        @GetMapping("/pcount")
+        public double productcount (){
+        return productRegistrationService.getregisteredproductcount();
         }
 
  }
