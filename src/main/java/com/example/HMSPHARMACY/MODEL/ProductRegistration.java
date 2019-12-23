@@ -3,6 +3,7 @@ package com.example.HMSPHARMACY.MODEL;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -22,6 +23,9 @@ public class ProductRegistration {
     String status;
     Double unitPrice;
     byte[] qrcode;
+
+    @Temporal(TemporalType.DATE)
+    Date createddate;
 
     @ManyToOne
     @JoinColumn(name = "company_id",nullable = false)
@@ -43,7 +47,7 @@ public class ProductRegistration {
     public ProductRegistration() {
     }
 
-    public ProductRegistration(String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Double sellingPrice, String state, String status, Double unitPrice, Company companyProd, DrugFormation drugFormation, List<Sales> sales) {
+    public ProductRegistration(String productName, String formula, Long packing, Double boxRate, Long minStock, Long maxStock, Double sellingPrice, String state, String status, Double unitPrice, Company companyProd, DrugFormation drugFormation, List<Sales> sales,Date createddate) {
         this.productName = productName;
         this.formula = formula;
         this.packing = packing;
@@ -57,6 +61,7 @@ public class ProductRegistration {
         this.companyProd = companyProd;
         this.drugFormation = drugFormation;
         this.sales = sales;
+        this.createddate = createddate;
     }
 
     public Double getUnitPrice() {
@@ -178,4 +183,14 @@ public class ProductRegistration {
     public void setQrcode(byte[] qrcode) {
         this.qrcode = qrcode;
     }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+
 }

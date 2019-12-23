@@ -14,10 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ProductRegistrationService {
@@ -52,6 +49,7 @@ public class ProductRegistrationService {
             productRegistration.setPacking(productRegistrationDTO.getPacking());
             productRegistration.setStatus("Active");
             productRegistration.setState(productRegistrationDTO.getState());
+            productRegistration.setCreateddate(new Date());
             //  productRegistration.setRunningProduct(productRegistrationDTO.getRunningProduct());
             productRegistrationRepository.save(productRegistration);
 
