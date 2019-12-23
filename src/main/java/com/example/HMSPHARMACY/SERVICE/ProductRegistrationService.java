@@ -1,5 +1,6 @@
 package com.example.HMSPHARMACY.SERVICE;
 
+import com.example.HMSPHARMACY.DTO.ChartDTO;
 import com.example.HMSPHARMACY.DTO.ProductRegistrationDTO;
 import com.example.HMSPHARMACY.DTO.ProductStockDTO;
 import com.example.HMSPHARMACY.MODEL.ProductRegistration;
@@ -185,4 +186,16 @@ public class ProductRegistrationService {
     public double getTotalUnitPrice(){
         return productRegistrationRepository.getTotalUnitPrice();
     }
+
+    public List<ChartDTO> getLessStockProducts(){
+        List<ChartDTO> chartData = new ArrayList<>();
+        List<ProductRegistration> productList = productRegistrationRepository.getLessStockProducts();
+        for(ProductRegistration product : productList){
+            chartData.add(new ChartDTO(product.getProductName(),product.getMaxStock().toString()));
+        }
+
+        return chartData;
+    }
+
+
 }
