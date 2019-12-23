@@ -4,6 +4,7 @@ import com.example.HMSPHARMACY.DTO.DispensaryDTO;
 import com.example.HMSPHARMACY.MODEL.Dispensary;
 import com.example.HMSPHARMACY.SERVICE.DispensaryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +18,10 @@ public class DispensaryController {
     DispensaryService dispensaryService;
 
     @PostMapping("/")
-    public String addDispensary(@RequestBody DispensaryDTO dispensary){
+    public ResponseEntity<String> addDispensary(@RequestBody DispensaryDTO dispensary){
 
         this.dispensaryService.saveDispensary(dispensary);
-        return "Dispensary Saved";
+        return new ResponseEntity<String>("\"Dispensary saved successfully\"",HttpStatus.OK);
 
     }
 
@@ -51,8 +52,8 @@ public class DispensaryController {
         return dispensaryService.sellDispensary(quantity, dispensary);
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity updateStatus(@PathVariable ("id") Long id, @RequestBody DispensaryDTO dispensary) {
-        return dispensaryService.updateStatus(id, dispensary);
+    @PutMapping("/active/{id}")
+    public ResponseEntity updateStatus(@PathVariable ("id") Long id) {
+        return dispensaryService.updateStatus(id);
     }
 }
