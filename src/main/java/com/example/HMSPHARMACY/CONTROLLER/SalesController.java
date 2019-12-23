@@ -1,5 +1,6 @@
 package com.example.HMSPHARMACY.CONTROLLER;
 
+import com.example.HMSPHARMACY.DTO.ChartDTO;
 import com.example.HMSPHARMACY.DTO.FilterSalesByDateDTO;
 import com.example.HMSPHARMACY.DTO.SalesDTO;
 import com.example.HMSPHARMACY.MODEL.BulkSave;
@@ -40,4 +41,15 @@ public class SalesController {
     @GetMapping("/product/{id}")
     public ProductRegistration getProductById(@PathVariable("id") Long id)
     {return salesService.getProductById(id);}
+
+    @GetMapping("/getprofit")
+    public double getprofit (){
+        return salesService.getprofit();
+    }
+
+    @PostMapping("/getsalesdata")
+    public List<ChartDTO> getsalesdata(){
+        return salesService.getBulkSalesData();
+    }
+
 }
