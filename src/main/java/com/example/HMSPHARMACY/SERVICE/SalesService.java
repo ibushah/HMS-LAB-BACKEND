@@ -1,5 +1,6 @@
 package com.example.HMSPHARMACY.SERVICE;
 
+import com.example.HMSPHARMACY.DTO.ChartDTO;
 import com.example.HMSPHARMACY.DTO.FilterSalesByDateDTO;
 import com.example.HMSPHARMACY.DTO.SalesDTO;
 import com.example.HMSPHARMACY.MODEL.BulkSave;
@@ -14,10 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class SalesService {
@@ -122,6 +120,34 @@ public class SalesService {
     public Date dateformatter(String strDate) throws Exception {
         Date date1=new SimpleDateFormat("yyyy/MM/dd").parse(strDate);
         return date1;
+    }
+
+    public double getprofit(){
+        return salesRepository.getProfit();
+    }
+
+    public List<ChartDTO> getBulkSalesData() {
+        List<Sales> salesdata = salesRepository.getSalesData();
+        List<ChartDTO> saleschart = new ArrayList<>();
+        Map<String,Double> map = new HashMap<>();
+        for(Sales sale : salesdata){
+
+            if(map.containsKey(sale.getCreatedAt().toString())){
+                map.put(sale.getCreatedAt().toString(),( map.get(sale.getCreatedAt()) + sale.getTotalSellingPrice()  ));
+            }
+
+            else{
+                map.put(sale.getCreatedAt().toString(),sale.getTotalSellingPrice());
+            }
+
+        }
+
+        for(Map.Entry<String,Double> data : map.entrySet()){
+            saleschart.add(new ChartDTO(data.getKey(),data.getValue().toString()));
+        }
+
+        return saleschart;
+
     }
 
 
