@@ -48,6 +48,7 @@ public class ProductRegistrationService {
             productRegistration.setMaxStock(productRegistrationDTO.getMaxStock());
             productRegistration.setMinStock(productRegistrationDTO.getMinStock());
             productRegistration.setPacking(productRegistrationDTO.getPacking());
+            productRegistration.setSellingPrice(productRegistrationDTO.getSellingPrice());
             productRegistration.setStatus("Active");
             productRegistration.setState(productRegistrationDTO.getState());
             productRegistration.setCreateddate(new Date());
